@@ -105,22 +105,30 @@
         </li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle avatar pull-right" data-toggle="dropdown">
-                <img src="img/users/mike.jpg" alt="mike" class="img-avatar" />
+
                 @if (Request.IsAuthenticated)
                 {
-                    <span class="hidden-small">@User.Identity.GetUserName()<b class="caret"></b></span>
+                    <span class="hidden-small"><i class="fa fa-user fa-lg"></i> @User.Identity.GetUserName()<b class="caret"></b></span>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a href="profile.html"><i class="fa fa-user"></i>View Profile</a></li>
+                        <li class="divider"></li>
+                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "form-inline" }))
+                        {
+                            @Html.AntiForgeryToken()
+                        }
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i>Logout</a></li>
+
+                    </ul>
                 }
                 else
                 {
-                    <span class="hidden-small">Mike Smith<b class="caret"></b></span>
+                    <span class="hidden-small">Login<b class="caret"></b></span>
+                    <ul class="dropdown-menu pull-right">
+
+                    </ul>
                 }
             </a>
-            <ul class="dropdown-menu pull-right">
-                <li><a href="@Url.Action("Login", "Account")"><i class="fa fa-gear"></i>Login</a></li>
-                <li><a href="profile.html"><i class="fa fa-user"></i>View Profile</a></li>
-                <li class="divider"></li>
-                <li><a href="login.html"><i class="fa fa-sign-out"></i>Logout</a></li>
-            </ul>
+
         </li>
     </ul>
 

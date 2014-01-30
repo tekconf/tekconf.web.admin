@@ -85,6 +85,15 @@
       <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -121,6 +130,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.2.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.1.8.0.0\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=3.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WindowsAzure.Storage.3.0.2.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -142,7 +159,11 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -223,6 +244,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Code\AzureImageSaver.cs" />
+    <Compile Include="Code\FileSystemImageSaver.cs" />
+    <Compile Include="Code\Helpers.cs" />
+    <Compile Include="Code\IImageSaver.cs" />
+    <Compile Include="Code\IImageSaverConfiguration.cs" />
+    <Compile Include="Code\ImageSaverConfiguration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ConferenceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -396,9 +423,14 @@
     <Content Include="Content\css\select2x2.png" />
     <Content Include="Content\examples.css" />
     <Content Include="Content\font-awesome.css" />
-    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\font-awesome.min.css">
+      <DependentUpon>font-awesome.css</DependentUpon>
+    </Content>
     <Content Include="Content\fullcalendar.css" />
-    <Content Include="Content\fullcalendar.print.css" />
+    <Content Include="Content\fullcalendar.print.css">
+      <DependentUpon>fullcalendar.css</DependentUpon>
+    </Content>
+    <Content Include="Content\images\ImageSizeLogo.jpg" />
     <Content Include="Content\jquery.uniform\demo\demo.html" />
     <Content Include="Content\jquery.uniform\jquery.uniform.js" />
     <Content Include="Content\jquery.uniform\jquery.uniform.min.js" />
@@ -603,6 +635,7 @@
     <Content Include="Content\Themes\uniformjs\aristo\css\uniform.aristo.scss" />
     <Content Include="Content\Themes\uniformjs\agent\css\uniform.agent.scss" />
     <Content Include="Content\Themes\uniformjs\_base\css\uniform._base.scss" />
+    <Content Include="img\conferences\DefaultConference.png" />
     <Content Include="Scripts\bootstrap-daterangepicker\daterangepicker-bs2.css" />
     <Content Include="Scripts\bootstrap-daterangepicker\daterangepicker-bs3.css" />
     <Content Include="Scripts\bootstrap-daterangepicker\daterangepicker.js" />

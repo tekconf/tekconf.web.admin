@@ -7,7 +7,6 @@ using TekConf.Data.Models;
 
 namespace TekConf.Data
 {
-
     public class TekConfContext : IdentityDbContext<User>, ITekConfContext
     {
         public TekConfContext() : base("TekConf") { }
