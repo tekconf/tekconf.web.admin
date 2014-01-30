@@ -1,0 +1,16 @@
+﻿<!-- SIDEBAR -->
+<aside class="sidebar">
+    <ul class="nav nav-stacked">
+        <li class="active"><a href="@Url.Action("Index", "Home")"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a></li>
+        <li class="menu ">
+            <a href="#" class="menu-toggle"><i class="fa fa-comments-o"></i>Conferences<i class="caret"></i></a>
+            <ul class="submenu">
+                <li><a href="@Url.Action("Index", "Conference")"><i class="fa fa-star"></i><span>My Conferences</span></a></li>
+                <li><a href="@Url.Action("Create", "Conference")"><i class="fa fa-plus"></i><span>New Conference</span></a></li>
+            </ul>
+        </li>
+        <li><a href="charts.html"><i class="fa fa-search"></i>Find Speakers</a></li>
+        <li><a href="charts.html"><i class="fa fa-bar-chart-o fa-fw"></i>Reports</a></li>
+    </ul>
+</aside>
+<!-- END: SIDEBAR -->

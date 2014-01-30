@@ -1,0 +1,32 @@
+﻿@model TekConf.Web.Admin.ViewModels.Conference.ConferenceCreateViewModel
+
+<section class="content">
+
+    <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-home fa-fw"></i> Conferences</li>
+    </ol>
+
+    <div class="header">
+        <div class="col-md-12">
+            <h3 class="header-title">Create a new Conference</h3>
+            <p class="header-info">Overview and latest statistics</p>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="main-content">
+        <div class="col-md-6">
+            @using (Html.BeginForm("Create", "Conference", null, FormMethod.Post, new { role = "form" }))
+            {
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Conference.Name)
+                    @Html.TextBoxFor(m => m.Conference.Name, new { @class = "form-control", placeholder = "Enter conference name" })
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create Conference" class="btn btn-primary" />
+                </div>
+            }
+        </div>
+    </div>
+    <!-- END: CONTENT -->
+</section>

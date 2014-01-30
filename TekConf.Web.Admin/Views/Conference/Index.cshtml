@@ -1,0 +1,26 @@
+﻿@model List<TekConf.Data.Models.Conference>
+ 
+
+<section class="content">
+
+    <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-home fa-fw"></i> Conferences</li>
+    </ol>
+
+    <div class="header">
+        <div class="col-md-12">
+            <h3 class="header-title">Conferences</h3>
+            <p class="header-info">Overview and latest statistics</p>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="main-content">
+        @foreach (var conference in Model)
+        {
+            @conference.Name <br />
+        }
+    </div>
+    <!-- END: CONTENT -->
+</section>
+          

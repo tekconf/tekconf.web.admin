@@ -20,19 +20,19 @@ namespace TekConf.Web.Admin
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            app.UseMicrosoftAccountAuthentication(
+                    clientId: "0000000040112827",
+                    clientSecret: "dOusz11kRzfBWUShkNpbf465EPEbhRE5");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseTwitterAuthentication(
+                            consumerKey: "3mYNb4Jt33Ttdgw4Q4Ppjw",
+                            consumerSecret: "RwRTOPu6tYoP2Yh0RBLOfQeWiTKPBjlfDv7IbNJ3G7k");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+                            appId: "417883241605228",
+                            appSecret: "c2df6f0a2ed2a01f6f0553b3e58ad715");
 
-            //app.UseGoogleAuthentication();
+            app.UseGoogleAuthentication();
         }
     }
 }
