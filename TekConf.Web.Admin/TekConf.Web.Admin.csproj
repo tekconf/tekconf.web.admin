@@ -1,0 +1,1210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B9EFB6BB-406D-468F-9F1D-02AFB19D1D72}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TekConf.Web.Admin</RootNamespace>
+    <AssemblyName>TekConf.Web.Admin</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.2.1.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.2.1.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.2.1.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.2.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.2\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.1.0.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\ark.css" />
+    <Content Include="Content\bootstrap-datepicker.css" />
+    <Content Include="Content\bootstrap-datepicker3.css" />
+    <Content Include="Content\bootstrap-jasny\about.html" />
+    <Content Include="Content\bootstrap-jasny\components.html" />
+    <Content Include="Content\bootstrap-jasny\css.html" />
+    <Content Include="Content\bootstrap-jasny\customize.html" />
+    <Content Include="Content\bootstrap-jasny\dist\css\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-jasny\dist\css\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-jasny\dist\css\bootstrap.css" />
+    <Content Include="Content\bootstrap-jasny\dist\css\bootstrap.min.css" />
+    <Content Include="Content\bootstrap-jasny\dist\extend\css\jasny-bootstrap.css" />
+    <Content Include="Content\bootstrap-jasny\dist\extend\css\jasny-bootstrap.min.css" />
+    <Content Include="Content\bootstrap-jasny\dist\extend\js\jasny-bootstrap.js" />
+    <Content Include="Content\bootstrap-jasny\dist\extend\js\jasny-bootstrap.min.js" />
+    <Content Include="Content\bootstrap-jasny\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\bootstrap-jasny\dist\js\bootstrap.js" />
+    <Content Include="Content\bootstrap-jasny\dist\js\bootstrap.min.js" />
+    <Content Include="Content\bootstrap-jasny\docs-assets\css\docs.css" />
+    <Content Include="Content\bootstrap-jasny\docs-assets\css\pygments-manni.css" />
+    <Content Include="Content\bootstrap-jasny\docs-assets\ico\apple-touch-icon-144-precomposed.png" />
+    <Content Include="Content\bootstrap-jasny\docs-assets\ico\favicon.png" />
+    <Content Include="Content\bootstrap-jasny\docs-assets\img\bg-1920x1200.jpg" />
+    <Content Include="Content\bootstrap-jasny\docs-assets\img\bg-3500x2500.jpg" />
+    <Content Include="Content\bootstrap-jasny\docs-assets\js\application.js" />
+    <Content Include="Content\bootstrap-jasny\docs-assets\js\customizer.js" />
+    <Content Include="Content\bootstrap-jasny\docs-assets\js\filesaver.js" />
+    <Content Include="Content\bootstrap-jasny\docs-assets\js\holder.js" />
+    <Content Include="Content\bootstrap-jasny\docs-assets\js\ie8-responsive-file-warning.js" />
+    <Content Include="Content\bootstrap-jasny\docs-assets\js\jszip.js" />
+    <Content Include="Content\bootstrap-jasny\docs-assets\js\less.js" />
+    <Content Include="Content\bootstrap-jasny\docs-assets\js\raw-files.js" />
+    <Content Include="Content\bootstrap-jasny\docs-assets\js\uglify.js" />
+    <Content Include="Content\bootstrap-jasny\examples\carousel\carousel.css" />
+    <Content Include="Content\bootstrap-jasny\examples\carousel\index.html" />
+    <Content Include="Content\bootstrap-jasny\examples\grid\grid.css" />
+    <Content Include="Content\bootstrap-jasny\examples\grid\index.html" />
+    <Content Include="Content\bootstrap-jasny\examples\jumbotron-narrow\index.html" />
+    <Content Include="Content\bootstrap-jasny\examples\jumbotron-narrow\jumbotron-narrow.css" />
+    <Content Include="Content\bootstrap-jasny\examples\jumbotron\index.html" />
+    <Content Include="Content\bootstrap-jasny\examples\jumbotron\jumbotron.css" />
+    <Content Include="Content\bootstrap-jasny\examples\justified-nav\index.html" />
+    <Content Include="Content\bootstrap-jasny\examples\justified-nav\justified-nav.css" />
+    <Content Include="Content\bootstrap-jasny\examples\navbar-fixed-top\index.html" />
+    <Content Include="Content\bootstrap-jasny\examples\navbar-fixed-top\navbar-fixed-top.css" />
+    <Content Include="Content\bootstrap-jasny\examples\navbar-static-top\index.html" />
+    <Content Include="Content\bootstrap-jasny\examples\navbar-static-top\navbar-static-top.css" />
+    <Content Include="Content\bootstrap-jasny\examples\navbar\index.html" />
+    <Content Include="Content\bootstrap-jasny\examples\navbar\navbar.css" />
+    <Content Include="Content\bootstrap-jasny\examples\navmenu-push\index.html" />
+    <Content Include="Content\bootstrap-jasny\examples\navmenu-push\navmenu-push.css" />
+    <Content Include="Content\bootstrap-jasny\examples\navmenu-reveal\index.html" />
+    <Content Include="Content\bootstrap-jasny\examples\navmenu-reveal\navmenu-reveal.css" />
+    <Content Include="Content\bootstrap-jasny\examples\navmenu\index.html" />
+    <Content Include="Content\bootstrap-jasny\examples\navmenu\navmenu.css" />
+    <Content Include="Content\bootstrap-jasny\examples\non-responsive\index.html" />
+    <Content Include="Content\bootstrap-jasny\examples\non-responsive\non-responsive.css" />
+    <Content Include="Content\bootstrap-jasny\examples\offcanvas\index.html" />
+    <Content Include="Content\bootstrap-jasny\examples\offcanvas\offcanvas.css" />
+    <Content Include="Content\bootstrap-jasny\examples\offcanvas\offcanvas.js" />
+    <Content Include="Content\bootstrap-jasny\examples\screenshots\carousel.jpg" />
+    <Content Include="Content\bootstrap-jasny\examples\screenshots\grid.jpg" />
+    <Content Include="Content\bootstrap-jasny\examples\screenshots\jumbotron-narrow.jpg" />
+    <Content Include="Content\bootstrap-jasny\examples\screenshots\jumbotron.jpg" />
+    <Content Include="Content\bootstrap-jasny\examples\screenshots\justified-nav.jpg" />
+    <Content Include="Content\bootstrap-jasny\examples\screenshots\navbar-fixed.jpg" />
+    <Content Include="Content\bootstrap-jasny\examples\screenshots\navbar-static.jpg" />
+    <Content Include="Content\bootstrap-jasny\examples\screenshots\navbar.jpg" />
+    <Content Include="Content\bootstrap-jasny\examples\screenshots\navmenu-push.jpg" />
+    <Content Include="Content\bootstrap-jasny\examples\screenshots\navmenu-reveal.jpg" />
+    <Content Include="Content\bootstrap-jasny\examples\screenshots\navmenu.jpg" />
+    <Content Include="Content\bootstrap-jasny\examples\screenshots\non-responsive.jpg" />
+    <Content Include="Content\bootstrap-jasny\examples\screenshots\offcanvas.jpg" />
+    <Content Include="Content\bootstrap-jasny\examples\screenshots\sign-in.jpg" />
+    <Content Include="Content\bootstrap-jasny\examples\screenshots\starter-template.jpg" />
+    <Content Include="Content\bootstrap-jasny\examples\screenshots\sticky-footer-navbar.jpg" />
+    <Content Include="Content\bootstrap-jasny\examples\screenshots\sticky-footer.jpg" />
+    <Content Include="Content\bootstrap-jasny\examples\screenshots\theme.jpg" />
+    <Content Include="Content\bootstrap-jasny\examples\signin\index.html" />
+    <Content Include="Content\bootstrap-jasny\examples\signin\signin.css" />
+    <Content Include="Content\bootstrap-jasny\examples\starter-template\index.html" />
+    <Content Include="Content\bootstrap-jasny\examples\starter-template\starter-template.css" />
+    <Content Include="Content\bootstrap-jasny\examples\sticky-footer-navbar\index.html" />
+    <Content Include="Content\bootstrap-jasny\examples\sticky-footer-navbar\sticky-footer-navbar.css" />
+    <Content Include="Content\bootstrap-jasny\examples\sticky-footer\index.html" />
+    <Content Include="Content\bootstrap-jasny\examples\sticky-footer\sticky-footer.css" />
+    <Content Include="Content\bootstrap-jasny\examples\theme\index.html" />
+    <Content Include="Content\bootstrap-jasny\examples\theme\theme.css" />
+    <Content Include="Content\bootstrap-jasny\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\bootstrap-jasny\getting-started.html" />
+    <Content Include="Content\bootstrap-jasny\Gruntfile.js" />
+    <Content Include="Content\bootstrap-jasny\index.html" />
+    <Content Include="Content\bootstrap-jasny\javascript.html" />
+    <Content Include="Content\bootstrap-jasny\js\affix.js" />
+    <Content Include="Content\bootstrap-jasny\js\alert.js" />
+    <Content Include="Content\bootstrap-jasny\js\button.js" />
+    <Content Include="Content\bootstrap-jasny\js\carousel.js" />
+    <Content Include="Content\bootstrap-jasny\js\collapse.js" />
+    <Content Include="Content\bootstrap-jasny\js\dropdown.js" />
+    <Content Include="Content\bootstrap-jasny\js\fileinput.js" />
+    <Content Include="Content\bootstrap-jasny\js\inputmask.js" />
+    <Content Include="Content\bootstrap-jasny\js\modal.js" />
+    <Content Include="Content\bootstrap-jasny\js\offcanvas.js" />
+    <Content Include="Content\bootstrap-jasny\js\popover.js" />
+    <Content Include="Content\bootstrap-jasny\js\rowlink.js" />
+    <Content Include="Content\bootstrap-jasny\js\scrollspy.js" />
+    <Content Include="Content\bootstrap-jasny\js\tab.js" />
+    <Content Include="Content\bootstrap-jasny\js\tests\index.html" />
+    <Content Include="Content\bootstrap-jasny\js\tests\unit\affix.js" />
+    <Content Include="Content\bootstrap-jasny\js\tests\unit\alert.js" />
+    <Content Include="Content\bootstrap-jasny\js\tests\unit\button.js" />
+    <Content Include="Content\bootstrap-jasny\js\tests\unit\carousel.js" />
+    <Content Include="Content\bootstrap-jasny\js\tests\unit\collapse.js" />
+    <Content Include="Content\bootstrap-jasny\js\tests\unit\dropdown.js" />
+    <Content Include="Content\bootstrap-jasny\js\tests\unit\modal.js" />
+    <Content Include="Content\bootstrap-jasny\js\tests\unit\phantom.js" />
+    <Content Include="Content\bootstrap-jasny\js\tests\unit\popover.js" />
+    <Content Include="Content\bootstrap-jasny\js\tests\unit\scrollspy.js" />
+    <Content Include="Content\bootstrap-jasny\js\tests\unit\tab.js" />
+    <Content Include="Content\bootstrap-jasny\js\tests\unit\tooltip.js" />
+    <Content Include="Content\bootstrap-jasny\js\tests\unit\transition.js" />
+    <Content Include="Content\bootstrap-jasny\js\tests\vendor\jquery.js" />
+    <Content Include="Content\bootstrap-jasny\js\tests\vendor\qunit.css" />
+    <Content Include="Content\bootstrap-jasny\js\tests\vendor\qunit.js" />
+    <Content Include="Content\bootstrap-jasny\js\tooltip.js" />
+    <Content Include="Content\bootstrap-jasny\js\transition.js" />
+    <Content Include="Content\bootstrap-jasny\_includes\ads.html" />
+    <Content Include="Content\bootstrap-jasny\_includes\footer.html" />
+    <Content Include="Content\bootstrap-jasny\_includes\header.html" />
+    <Content Include="Content\bootstrap-jasny\_includes\nav-about.html" />
+    <Content Include="Content\bootstrap-jasny\_includes\nav-components.html" />
+    <Content Include="Content\bootstrap-jasny\_includes\nav-css.html" />
+    <Content Include="Content\bootstrap-jasny\_includes\nav-customize.html" />
+    <Content Include="Content\bootstrap-jasny\_includes\nav-getting-started.html" />
+    <Content Include="Content\bootstrap-jasny\_includes\nav-javascript.html" />
+    <Content Include="Content\bootstrap-jasny\_includes\nav-main.html" />
+    <Content Include="Content\bootstrap-jasny\_includes\old-bs-docs.html" />
+    <Content Include="Content\bootstrap-jasny\_includes\social-buttons.html" />
+    <Content Include="Content\bootstrap-jasny\_layouts\default.html" />
+    <Content Include="Content\bootstrap-jasny\_layouts\home.html" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css">
+      <DependentUpon>bootstrap-theme.css</DependentUpon>
+    </Content>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\select2-spinner.gif" />
+    <Content Include="Content\css\select2.css" />
+    <Content Include="Content\css\select2.png" />
+    <Content Include="Content\css\select2x2.png" />
+    <Content Include="Content\examples.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\fullcalendar.css" />
+    <Content Include="Content\fullcalendar.print.css" />
+    <Content Include="Content\jquery.uniform\demo\demo.html" />
+    <Content Include="Content\jquery.uniform\jquery.uniform.js" />
+    <Content Include="Content\jquery.uniform\jquery.uniform.min.js" />
+    <Content Include="Content\jquery.uniform\theme-kit\bg-input-focus.png" />
+    <Content Include="Content\jquery.uniform\theme-kit\bg-input.png" />
+    <Content Include="Content\jquery.uniform\theme-kit\identification.png" />
+    <Content Include="Content\jquery.uniform\themes\agent\css\uniform.agent.css" />
+    <Content Include="Content\jquery.uniform\themes\agent\css\uniform.agent.min.css" />
+    <Content Include="Content\jquery.uniform\themes\agent\images\bg-input-agent.png" />
+    <Content Include="Content\jquery.uniform\themes\agent\images\bg-input-focus-agent.png" />
+    <Content Include="Content\jquery.uniform\themes\agent\images\sprite-agent.png" />
+    <Content Include="Content\jquery.uniform\themes\aristo\css\uniform.aristo.css" />
+    <Content Include="Content\jquery.uniform\themes\aristo\css\uniform.aristo.min.css" />
+    <Content Include="Content\jquery.uniform\themes\aristo\images\bg-input-aristo.png" />
+    <Content Include="Content\jquery.uniform\themes\aristo\images\bg-input-focus-aristo.png" />
+    <Content Include="Content\jquery.uniform\themes\aristo\images\sprite-aristo.png" />
+    <Content Include="Content\jquery.uniform\themes\default\css\uniform.default.css" />
+    <Content Include="Content\jquery.uniform\themes\default\css\uniform.default.min.css" />
+    <Content Include="Content\jquery.uniform\themes\default\images\bg-input-focus.png" />
+    <Content Include="Content\jquery.uniform\themes\default\images\bg-input.png" />
+    <Content Include="Content\jquery.uniform\themes\default\images\sprite.png" />
+    <Content Include="Content\jquery.uniform\themes\jeans\css\uniform.jeans.css" />
+    <Content Include="Content\jquery.uniform\themes\jeans\css\uniform.jeans.min.css" />
+    <Content Include="Content\jquery.uniform\themes\jeans\images\bg-input-focus-jeans.png" />
+    <Content Include="Content\jquery.uniform\themes\jeans\images\bg-input-focus-retina-jeans.png" />
+    <Content Include="Content\jquery.uniform\themes\jeans\images\bg-input-jeans.png" />
+    <Content Include="Content\jquery.uniform\themes\jeans\images\bg-input-retina-jeans.png" />
+    <Content Include="Content\jquery.uniform\themes\jeans\images\sprite-jeans.png" />
+    <Content Include="Content\jquery.uniform\themes\jeans\images\sprite-retina-jeans.png" />
+    <Content Include="Content\jquery.uniform\themes\_base\css\uniform._base.css" />
+    <Content Include="Content\jquery.uniform\themes\_base\css\uniform._base.min.css" />
+    <Content Include="Content\jquery.uniform\www-fragments\index-start.html" />
+    <Content Include="Content\jquery.uniform\www-fragments\index-stop.html" />
+    <Content Include="Content\jquery.uniform\www\images\bg-code.png" />
+    <Content Include="Content\jquery.uniform\www\images\btn-lg-bg.png" />
+    <Content Include="Content\jquery.uniform\www\images\btn-sm-bg.png" />
+    <Content Include="Content\jquery.uniform\www\images\download.png" />
+    <Content Include="Content\jquery.uniform\www\images\icon-download.png" />
+    <Content Include="Content\jquery.uniform\www\images\logo-pixelmatrix.png" />
+    <Content Include="Content\jquery.uniform\www\images\preview-agent.png" />
+    <Content Include="Content\jquery.uniform\www\images\preview-aristo.png" />
+    <Content Include="Content\jquery.uniform\www\images\preview-default.png" />
+    <Content Include="Content\jquery.uniform\www\javascripts\ICanHaz-no-mustache.min.js" />
+    <Content Include="Content\jquery.uniform\www\javascripts\index-theme.js" />
+    <Content Include="Content\jquery.uniform\www\javascripts\index.js" />
+    <Content Include="Content\jquery.uniform\www\javascripts\multiple-themes.js" />
+    <Content Include="Content\jquery.uniform\www\javascripts\mustache.js" />
+    <Content Include="Content\jquery.uniform\www\multiple-themes.html" />
+    <Content Include="Content\jquery.uniform\www\stylesheets\multiple-themes.css" />
+    <Content Include="Content\jquery.uniform\www\stylesheets\site.css" />
+    <Content Include="Content\prettify.css" />
+    <Content Include="Content\select2\select2-bootstrap.css" />
+    <Content Include="Content\select2\select2-spinner.gif" />
+    <Content Include="Content\select2\select2.css" />
+    <Content Include="Content\select2\select2.js" />
+    <Content Include="Content\select2\select2.min.js" />
+    <Content Include="Content\select2\select2.png" />
+    <Content Include="Content\select2\select2x2.png" />
+    <Content Include="Content\select2\select2_locale_ar.js" />
+    <Content Include="Content\select2\select2_locale_bg.js" />
+    <Content Include="Content\select2\select2_locale_ca.js" />
+    <Content Include="Content\select2\select2_locale_cs.js" />
+    <Content Include="Content\select2\select2_locale_da.js" />
+    <Content Include="Content\select2\select2_locale_de.js" />
+    <Content Include="Content\select2\select2_locale_el.js" />
+    <Content Include="Content\select2\select2_locale_es.js" />
+    <Content Include="Content\select2\select2_locale_et.js" />
+    <Content Include="Content\select2\select2_locale_eu.js" />
+    <Content Include="Content\select2\select2_locale_fa.js" />
+    <Content Include="Content\select2\select2_locale_fi.js" />
+    <Content Include="Content\select2\select2_locale_fr.js" />
+    <Content Include="Content\select2\select2_locale_gl.js" />
+    <Content Include="Content\select2\select2_locale_he.js" />
+    <Content Include="Content\select2\select2_locale_hr.js" />
+    <Content Include="Content\select2\select2_locale_hu.js" />
+    <Content Include="Content\select2\select2_locale_id.js" />
+    <Content Include="Content\select2\select2_locale_is.js" />
+    <Content Include="Content\select2\select2_locale_it.js" />
+    <Content Include="Content\select2\select2_locale_ja.js" />
+    <Content Include="Content\select2\select2_locale_ko.js" />
+    <Content Include="Content\select2\select2_locale_lt.js" />
+    <Content Include="Content\select2\select2_locale_lv.js" />
+    <Content Include="Content\select2\select2_locale_mk.js" />
+    <Content Include="Content\select2\select2_locale_ms.js" />
+    <Content Include="Content\select2\select2_locale_nl.js" />
+    <Content Include="Content\select2\select2_locale_no.js" />
+    <Content Include="Content\select2\select2_locale_pl.js" />
+    <Content Include="Content\select2\select2_locale_pt-BR.js" />
+    <Content Include="Content\select2\select2_locale_pt-PT.js" />
+    <Content Include="Content\select2\select2_locale_ro.js" />
+    <Content Include="Content\select2\select2_locale_ru.js" />
+    <Content Include="Content\select2\select2_locale_sk.js" />
+    <Content Include="Content\select2\select2_locale_sv.js" />
+    <Content Include="Content\select2\select2_locale_th.js" />
+    <Content Include="Content\select2\select2_locale_tr.js" />
+    <Content Include="Content\select2\select2_locale_ua.js" />
+    <Content Include="Content\select2\select2_locale_vi.js" />
+    <Content Include="Content\select2\select2_locale_zh-CN.js" />
+    <Content Include="Content\select2\select2_locale_zh-TW.js" />
+    <Content Include="Content\theme.css" />
+    <Content Include="Content\Themes\base\images\animated-overlay.gif" />
+    <Content Include="Content\Themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\Themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\Themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\Themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\Themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\Themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\Themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\Themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\Themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\Themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\Themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\Themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\Themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\Themes\base\jquery-ui.css" />
+    <Content Include="Content\Themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\Themes\base\jquery.ui.all.css" />
+    <Content Include="Content\Themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\Themes\base\jquery.ui.base.css" />
+    <Content Include="Content\Themes\base\jquery.ui.button.css" />
+    <Content Include="Content\Themes\base\jquery.ui.core.css" />
+    <Content Include="Content\Themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\Themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\Themes\base\jquery.ui.menu.css" />
+    <Content Include="Content\Themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\Themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\Themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\Themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\Themes\base\jquery.ui.spinner.css" />
+    <Content Include="Content\Themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\Themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\Themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Content\Themes\base\minified\images\animated-overlay.gif" />
+    <Content Include="Content\Themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\Themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\Themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\Themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\Themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\Themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\Themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\Themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\Themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\Themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\Themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\Themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\Themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\Themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\Themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\Themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\Themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\Themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\Themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\Themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\Themes\base\minified\jquery.ui.menu.min.css" />
+    <Content Include="Content\Themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\Themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\Themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\Themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\Themes\base\minified\jquery.ui.spinner.min.css" />
+    <Content Include="Content\Themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\Themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\Themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Content\Themes\uniformjs\agent\css\uniform.agent.css" />
+    <Content Include="Content\Themes\uniformjs\agent\css\uniform.agent.min.css" />
+    <Content Include="Content\Themes\uniformjs\agent\images\bg-input-agent.png" />
+    <Content Include="Content\Themes\uniformjs\agent\images\bg-input-focus-agent.png" />
+    <Content Include="Content\Themes\uniformjs\agent\images\sprite-agent.png" />
+    <Content Include="Content\Themes\uniformjs\aristo\css\uniform.aristo.css" />
+    <Content Include="Content\Themes\uniformjs\aristo\css\uniform.aristo.min.css" />
+    <Content Include="Content\Themes\uniformjs\aristo\images\bg-input-aristo.png" />
+    <Content Include="Content\Themes\uniformjs\aristo\images\bg-input-focus-aristo.png" />
+    <Content Include="Content\Themes\uniformjs\aristo\images\sprite-aristo.png" />
+    <Content Include="Content\Themes\uniformjs\default\css\uniform.default.css" />
+    <Content Include="Content\Themes\uniformjs\default\css\uniform.default.min.css" />
+    <Content Include="Content\Themes\uniformjs\default\images\bg-input-focus.png" />
+    <Content Include="Content\Themes\uniformjs\default\images\bg-input.png" />
+    <Content Include="Content\Themes\uniformjs\default\images\sprite.png" />
+    <Content Include="Content\Themes\uniformjs\jeans\css\uniform.jeans.css" />
+    <Content Include="Content\Themes\uniformjs\jeans\css\uniform.jeans.min.css" />
+    <Content Include="Content\Themes\uniformjs\jeans\images\bg-input-focus-jeans.png" />
+    <Content Include="Content\Themes\uniformjs\jeans\images\bg-input-focus-retina-jeans.png" />
+    <Content Include="Content\Themes\uniformjs\jeans\images\bg-input-jeans.png" />
+    <Content Include="Content\Themes\uniformjs\jeans\images\bg-input-retina-jeans.png" />
+    <Content Include="Content\Themes\uniformjs\jeans\images\sprite-jeans.png" />
+    <Content Include="Content\Themes\uniformjs\jeans\images\sprite-retina-jeans.png" />
+    <Content Include="Content\Themes\uniformjs\_base\css\uniform._base.css" />
+    <Content Include="Content\Themes\uniformjs\_base\css\uniform._base.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Content\Themes\uniformjs\jeans\css\uniform.jeans.scss" />
+    <Content Include="Content\Themes\uniformjs\default\css\uniform.default.scss" />
+    <Content Include="Content\Themes\uniformjs\aristo\css\uniform.aristo.scss" />
+    <Content Include="Content\Themes\uniformjs\agent\css\uniform.agent.scss" />
+    <Content Include="Content\Themes\uniformjs\_base\css\uniform._base.scss" />
+    <Content Include="Scripts\bootstrap-daterangepicker\daterangepicker-bs2.css" />
+    <Content Include="Scripts\bootstrap-daterangepicker\daterangepicker-bs3.css" />
+    <Content Include="Scripts\bootstrap-daterangepicker\daterangepicker.js" />
+    <Content Include="Scripts\bootstrap-daterangepicker\examples.html" />
+    <Content Include="Scripts\bootstrap-daterangepicker\moment.js" />
+    <Content Include="Scripts\bootstrap-daterangepicker\moment.min.js" />
+    <Content Include="Scripts\bootstrap-jasny\about.html" />
+    <Content Include="Scripts\bootstrap-jasny\components.html" />
+    <Content Include="Scripts\bootstrap-jasny\css.html" />
+    <Content Include="Scripts\bootstrap-jasny\customize.html" />
+    <Content Include="Scripts\bootstrap-jasny\dist\css\bootstrap-theme.css" />
+    <Content Include="Scripts\bootstrap-jasny\dist\css\bootstrap-theme.min.css" />
+    <Content Include="Scripts\bootstrap-jasny\dist\css\bootstrap.css" />
+    <Content Include="Scripts\bootstrap-jasny\dist\css\bootstrap.min.css" />
+    <Content Include="Scripts\bootstrap-jasny\dist\extend\css\jasny-bootstrap.css" />
+    <Content Include="Scripts\bootstrap-jasny\dist\extend\css\jasny-bootstrap.min.css" />
+    <Content Include="Scripts\bootstrap-jasny\dist\extend\js\jasny-bootstrap.js" />
+    <Content Include="Scripts\bootstrap-jasny\dist\extend\js\jasny-bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap-jasny\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\bootstrap-jasny\dist\js\bootstrap.js" />
+    <Content Include="Scripts\bootstrap-jasny\dist\js\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap-jasny\docs-assets\css\docs.css" />
+    <Content Include="Scripts\bootstrap-jasny\docs-assets\css\pygments-manni.css" />
+    <Content Include="Scripts\bootstrap-jasny\docs-assets\ico\apple-touch-icon-144-precomposed.png" />
+    <Content Include="Scripts\bootstrap-jasny\docs-assets\ico\favicon.png" />
+    <Content Include="Scripts\bootstrap-jasny\docs-assets\img\bg-1920x1200.jpg" />
+    <Content Include="Scripts\bootstrap-jasny\docs-assets\img\bg-3500x2500.jpg" />
+    <Content Include="Scripts\bootstrap-jasny\docs-assets\js\application.js" />
+    <Content Include="Scripts\bootstrap-jasny\docs-assets\js\customizer.js" />
+    <Content Include="Scripts\bootstrap-jasny\docs-assets\js\filesaver.js" />
+    <Content Include="Scripts\bootstrap-jasny\docs-assets\js\holder.js" />
+    <Content Include="Scripts\bootstrap-jasny\docs-assets\js\ie8-responsive-file-warning.js" />
+    <Content Include="Scripts\bootstrap-jasny\docs-assets\js\jszip.js" />
+    <Content Include="Scripts\bootstrap-jasny\docs-assets\js\less.js" />
+    <Content Include="Scripts\bootstrap-jasny\docs-assets\js\raw-files.js" />
+    <Content Include="Scripts\bootstrap-jasny\docs-assets\js\uglify.js" />
+    <Content Include="Scripts\bootstrap-jasny\examples\carousel\carousel.css" />
+    <Content Include="Scripts\bootstrap-jasny\examples\carousel\index.html" />
+    <Content Include="Scripts\bootstrap-jasny\examples\grid\grid.css" />
+    <Content Include="Scripts\bootstrap-jasny\examples\grid\index.html" />
+    <Content Include="Scripts\bootstrap-jasny\examples\jumbotron-narrow\index.html" />
+    <Content Include="Scripts\bootstrap-jasny\examples\jumbotron-narrow\jumbotron-narrow.css" />
+    <Content Include="Scripts\bootstrap-jasny\examples\jumbotron\index.html" />
+    <Content Include="Scripts\bootstrap-jasny\examples\jumbotron\jumbotron.css" />
+    <Content Include="Scripts\bootstrap-jasny\examples\justified-nav\index.html" />
+    <Content Include="Scripts\bootstrap-jasny\examples\justified-nav\justified-nav.css" />
+    <Content Include="Scripts\bootstrap-jasny\examples\navbar-fixed-top\index.html" />
+    <Content Include="Scripts\bootstrap-jasny\examples\navbar-fixed-top\navbar-fixed-top.css" />
+    <Content Include="Scripts\bootstrap-jasny\examples\navbar-static-top\index.html" />
+    <Content Include="Scripts\bootstrap-jasny\examples\navbar-static-top\navbar-static-top.css" />
+    <Content Include="Scripts\bootstrap-jasny\examples\navbar\index.html" />
+    <Content Include="Scripts\bootstrap-jasny\examples\navbar\navbar.css" />
+    <Content Include="Scripts\bootstrap-jasny\examples\navmenu-push\index.html" />
+    <Content Include="Scripts\bootstrap-jasny\examples\navmenu-push\navmenu-push.css" />
+    <Content Include="Scripts\bootstrap-jasny\examples\navmenu-reveal\index.html" />
+    <Content Include="Scripts\bootstrap-jasny\examples\navmenu-reveal\navmenu-reveal.css" />
+    <Content Include="Scripts\bootstrap-jasny\examples\navmenu\index.html" />
+    <Content Include="Scripts\bootstrap-jasny\examples\navmenu\navmenu.css" />
+    <Content Include="Scripts\bootstrap-jasny\examples\non-responsive\index.html" />
+    <Content Include="Scripts\bootstrap-jasny\examples\non-responsive\non-responsive.css" />
+    <Content Include="Scripts\bootstrap-jasny\examples\offcanvas\index.html" />
+    <Content Include="Scripts\bootstrap-jasny\examples\offcanvas\offcanvas.css" />
+    <Content Include="Scripts\bootstrap-jasny\examples\offcanvas\offcanvas.js" />
+    <Content Include="Scripts\bootstrap-jasny\examples\screenshots\carousel.jpg" />
+    <Content Include="Scripts\bootstrap-jasny\examples\screenshots\grid.jpg" />
+    <Content Include="Scripts\bootstrap-jasny\examples\screenshots\jumbotron-narrow.jpg" />
+    <Content Include="Scripts\bootstrap-jasny\examples\screenshots\jumbotron.jpg" />
+    <Content Include="Scripts\bootstrap-jasny\examples\screenshots\justified-nav.jpg" />
+    <Content Include="Scripts\bootstrap-jasny\examples\screenshots\navbar-fixed.jpg" />
+    <Content Include="Scripts\bootstrap-jasny\examples\screenshots\navbar-static.jpg" />
+    <Content Include="Scripts\bootstrap-jasny\examples\screenshots\navbar.jpg" />
+    <Content Include="Scripts\bootstrap-jasny\examples\screenshots\navmenu-push.jpg" />
+    <Content Include="Scripts\bootstrap-jasny\examples\screenshots\navmenu-reveal.jpg" />
+    <Content Include="Scripts\bootstrap-jasny\examples\screenshots\navmenu.jpg" />
+    <Content Include="Scripts\bootstrap-jasny\examples\screenshots\non-responsive.jpg" />
+    <Content Include="Scripts\bootstrap-jasny\examples\screenshots\offcanvas.jpg" />
+    <Content Include="Scripts\bootstrap-jasny\examples\screenshots\sign-in.jpg" />
+    <Content Include="Scripts\bootstrap-jasny\examples\screenshots\starter-template.jpg" />
+    <Content Include="Scripts\bootstrap-jasny\examples\screenshots\sticky-footer-navbar.jpg" />
+    <Content Include="Scripts\bootstrap-jasny\examples\screenshots\sticky-footer.jpg" />
+    <Content Include="Scripts\bootstrap-jasny\examples\screenshots\theme.jpg" />
+    <Content Include="Scripts\bootstrap-jasny\examples\signin\index.html" />
+    <Content Include="Scripts\bootstrap-jasny\examples\signin\signin.css" />
+    <Content Include="Scripts\bootstrap-jasny\examples\starter-template\index.html" />
+    <Content Include="Scripts\bootstrap-jasny\examples\starter-template\starter-template.css" />
+    <Content Include="Scripts\bootstrap-jasny\examples\sticky-footer-navbar\index.html" />
+    <Content Include="Scripts\bootstrap-jasny\examples\sticky-footer-navbar\sticky-footer-navbar.css" />
+    <Content Include="Scripts\bootstrap-jasny\examples\sticky-footer\index.html" />
+    <Content Include="Scripts\bootstrap-jasny\examples\sticky-footer\sticky-footer.css" />
+    <Content Include="Scripts\bootstrap-jasny\examples\theme\index.html" />
+    <Content Include="Scripts\bootstrap-jasny\examples\theme\theme.css" />
+    <Content Include="Scripts\bootstrap-jasny\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\bootstrap-jasny\getting-started.html" />
+    <Content Include="Scripts\bootstrap-jasny\Gruntfile.js" />
+    <Content Include="Scripts\bootstrap-jasny\index.html" />
+    <Content Include="Scripts\bootstrap-jasny\javascript.html" />
+    <Content Include="Scripts\bootstrap-jasny\js\affix.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\alert.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\button.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\carousel.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\collapse.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\dropdown.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\fileinput.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\inputmask.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\modal.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\offcanvas.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\popover.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\rowlink.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\scrollspy.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\tab.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\tests\index.html" />
+    <Content Include="Scripts\bootstrap-jasny\js\tests\unit\affix.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\tests\unit\alert.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\tests\unit\button.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\tests\unit\carousel.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\tests\unit\collapse.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\tests\unit\dropdown.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\tests\unit\modal.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\tests\unit\phantom.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\tests\unit\popover.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\tests\unit\scrollspy.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\tests\unit\tab.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\tests\unit\tooltip.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\tests\unit\transition.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\tests\vendor\jquery.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\tests\vendor\qunit.css" />
+    <Content Include="Scripts\bootstrap-jasny\js\tests\vendor\qunit.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\tooltip.js" />
+    <Content Include="Scripts\bootstrap-jasny\js\transition.js" />
+    <Content Include="Scripts\bootstrap-jasny\_includes\ads.html" />
+    <Content Include="Scripts\bootstrap-jasny\_includes\footer.html" />
+    <Content Include="Scripts\bootstrap-jasny\_includes\header.html" />
+    <Content Include="Scripts\bootstrap-jasny\_includes\nav-about.html" />
+    <Content Include="Scripts\bootstrap-jasny\_includes\nav-components.html" />
+    <Content Include="Scripts\bootstrap-jasny\_includes\nav-css.html" />
+    <Content Include="Scripts\bootstrap-jasny\_includes\nav-customize.html" />
+    <Content Include="Scripts\bootstrap-jasny\_includes\nav-getting-started.html" />
+    <Content Include="Scripts\bootstrap-jasny\_includes\nav-javascript.html" />
+    <Content Include="Scripts\bootstrap-jasny\_includes\nav-main.html" />
+    <Content Include="Scripts\bootstrap-jasny\_includes\old-bs-docs.html" />
+    <Content Include="Scripts\bootstrap-jasny\_includes\social-buttons.html" />
+    <Content Include="Scripts\bootstrap-jasny\_layouts\default.html" />
+    <Content Include="Scripts\bootstrap-jasny\_layouts\home.html" />
+    <Content Include="Scripts\dropzone\css\basic.css" />
+    <Content Include="Scripts\dropzone\css\dropzone.css" />
+    <Content Include="Scripts\dropzone\css\stylus\dropzone.styl" />
+    <Content Include="Scripts\dropzone\css\stylus\basic.styl" />
+    <Content Include="Content\bootstrap-jasny\.bower.json" />
+    <Content Include="Content\bootstrap-jasny\bower.json" />
+    <Content Include="Content\bootstrap-jasny\browserstack.json" />
+    <Content Include="Content\bootstrap-jasny\composer.json" />
+    <Content Include="Content\bootstrap-jasny\CONTRIBUTING.md" />
+    <Content Include="Content\bootstrap-jasny\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-jasny\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\bootstrap-jasny\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\bootstrap-jasny\DOCS-LICENSE" />
+    <Content Include="Content\bootstrap-jasny\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-jasny\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\bootstrap-jasny\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\bootstrap-jasny\less\alerts-fixed.less" />
+    <Content Include="Content\bootstrap-jasny\less\alerts.less" />
+    <Content Include="Content\bootstrap-jasny\less\badges.less" />
+    <Content Include="Content\bootstrap-jasny\less\bootstrap.less" />
+    <Content Include="Content\bootstrap-jasny\less\breadcrumbs.less" />
+    <Content Include="Content\bootstrap-jasny\less\button-groups.less" />
+    <Content Include="Content\bootstrap-jasny\less\button-labels.less" />
+    <Content Include="Content\bootstrap-jasny\less\buttons.less" />
+    <Content Include="Content\bootstrap-jasny\less\carousel.less" />
+    <Content Include="Content\bootstrap-jasny\less\close.less" />
+    <Content Include="Content\bootstrap-jasny\less\code.less" />
+    <Content Include="Content\bootstrap-jasny\less\component-animations.less" />
+    <Content Include="Content\bootstrap-jasny\less\dropdowns.less" />
+    <Content Include="Content\bootstrap-jasny\less\fileinput.less" />
+    <Content Include="Content\bootstrap-jasny\less\forms.less" />
+    <Content Include="Content\bootstrap-jasny\less\glyphicons.less" />
+    <Content Include="Content\bootstrap-jasny\less\grid-container-smooth.less" />
+    <Content Include="Content\bootstrap-jasny\less\grid.less" />
+    <Content Include="Content\bootstrap-jasny\less\input-groups.less" />
+    <Content Include="Content\bootstrap-jasny\less\jasny-bootstrap.less" />
+    <Content Include="Content\bootstrap-jasny\less\jumbotron.less" />
+    <Content Include="Content\bootstrap-jasny\less\labels.less" />
+    <Content Include="Content\bootstrap-jasny\less\list-group.less" />
+    <Content Include="Content\bootstrap-jasny\less\media.less" />
+    <Content Include="Content\bootstrap-jasny\less\mixins.less" />
+    <Content Include="Content\bootstrap-jasny\less\modals.less" />
+    <Content Include="Content\bootstrap-jasny\less\nav-tab-alignment.less" />
+    <Content Include="Content\bootstrap-jasny\less\navbar.less" />
+    <Content Include="Content\bootstrap-jasny\less\navmenu.less" />
+    <Content Include="Content\bootstrap-jasny\less\navs.less" />
+    <Content Include="Content\bootstrap-jasny\less\normalize.less" />
+    <Content Include="Content\bootstrap-jasny\less\offcanvas.less" />
+    <Content Include="Content\bootstrap-jasny\less\pager.less" />
+    <Content Include="Content\bootstrap-jasny\less\pagination.less" />
+    <Content Include="Content\bootstrap-jasny\less\panels.less" />
+    <Content Include="Content\bootstrap-jasny\less\popovers.less" />
+    <Content Include="Content\bootstrap-jasny\less\print.less" />
+    <Content Include="Content\bootstrap-jasny\less\progress-bars.less" />
+    <Content Include="Content\bootstrap-jasny\less\responsive-utilities.less" />
+    <Content Include="Content\bootstrap-jasny\less\rowlink.less" />
+    <Content Include="Content\bootstrap-jasny\less\scaffolding.less" />
+    <Content Include="Content\bootstrap-jasny\less\tables.less" />
+    <Content Include="Content\bootstrap-jasny\less\theme.less" />
+    <Content Include="Content\bootstrap-jasny\less\thumbnails.less" />
+    <Content Include="Content\bootstrap-jasny\less\tooltip.less" />
+    <Content Include="Content\bootstrap-jasny\less\type.less" />
+    <Content Include="Content\bootstrap-jasny\less\utilities.less" />
+    <Content Include="Content\bootstrap-jasny\less\variables.less" />
+    <Content Include="Content\bootstrap-jasny\less\wells.less" />
+    <Content Include="Content\bootstrap-jasny\LICENSE" />
+    <Content Include="Content\bootstrap-jasny\LICENSE-MIT" />
+    <Content Include="Content\bootstrap-jasny\package.json" />
+    <Content Include="Content\bootstrap-jasny\README.md" />
+    <Content Include="Content\bootstrap-jasny\_config.yml" />
+    <Content Include="Content\select2\.bower.json" />
+    <Content Include="Content\select2\bower.json" />
+    <Content Include="Content\select2\LICENSE" />
+    <Content Include="Content\select2\README.md" />
+    <Content Include="Content\select2\release.sh" />
+    <Content Include="Content\select2\select2.jquery.json" />
+    <Content Include="Content\select2\select2_locale_en.js.template" />
+    <Content Include="Content\jquery.uniform\.bower.json" />
+    <Content Include="Content\jquery.uniform\Makefile" />
+    <Content Include="Content\jquery.uniform\package.json" />
+    <Content Include="Content\jquery.uniform\README.md" />
+    <Content Include="Content\jquery.uniform\theme-kit\README.md" />
+    <Content Include="Content\jquery.uniform\theme-kit\sprite.psd" />
+    <Content Include="Content\jquery.uniform\themes\agent\css\uniform.agent.scss" />
+    <Content Include="Content\jquery.uniform\themes\aristo\css\uniform.aristo.scss" />
+    <Content Include="Content\jquery.uniform\themes\default\css\uniform.default.scss" />
+    <Content Include="Content\jquery.uniform\themes\jeans\css\uniform.jeans.scss" />
+    <Content Include="Content\jquery.uniform\themes\_base\css\uniform._base.scss" />
+    <Content Include="Content\jquery.uniform\TODO.md" />
+    <Content Include="Content\jquery.uniform\www\.nojekyll" />
+    <Content Include="Content\jquery.uniform\www\CNAME" />
+    <Content Include="Content\jquery.uniform\www\downloads\.keep" />
+    <Content Include="Content\jquery.uniform\www\stylesheets\multiple-themes.scss" />
+    <Content Include="Scripts\bootstrap-daterangepicker\.bower.json" />
+    <Content Include="Scripts\bootstrap-daterangepicker\bower.json" />
+    <Content Include="Scripts\bootstrap-daterangepicker\README.md" />
+    <Content Include="Scripts\bootstrap-jasny\.bower.json" />
+    <Content Include="Scripts\bootstrap-jasny\bower.json" />
+    <Content Include="Scripts\bootstrap-jasny\browserstack.json" />
+    <Content Include="Scripts\bootstrap-jasny\composer.json" />
+    <Content Include="Scripts\bootstrap-jasny\CONTRIBUTING.md" />
+    <Content Include="Scripts\bootstrap-jasny\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\bootstrap-jasny\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\bootstrap-jasny\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\bootstrap-jasny\DOCS-LICENSE" />
+    <Content Include="Scripts\bootstrap-jasny\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\bootstrap-jasny\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\bootstrap-jasny\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\bootstrap-jasny\less\alerts-fixed.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\alerts.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\badges.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\bootstrap.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\breadcrumbs.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\button-groups.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\button-labels.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\buttons.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\carousel.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\close.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\code.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\component-animations.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\dropdowns.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\fileinput.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\forms.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\glyphicons.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\grid-container-smooth.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\grid.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\input-groups.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\jasny-bootstrap.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\jumbotron.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\labels.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\list-group.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\media.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\mixins.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\modals.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\nav-tab-alignment.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\navbar.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\navmenu.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\navs.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\normalize.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\offcanvas.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\pager.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\pagination.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\panels.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\popovers.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\print.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\progress-bars.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\responsive-utilities.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\rowlink.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\scaffolding.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\tables.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\theme.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\thumbnails.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\tooltip.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\type.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\utilities.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\variables.less" />
+    <Content Include="Scripts\bootstrap-jasny\less\wells.less" />
+    <Content Include="Scripts\bootstrap-jasny\LICENSE" />
+    <Content Include="Scripts\bootstrap-jasny\LICENSE-MIT" />
+    <Content Include="Scripts\bootstrap-jasny\package.json" />
+    <Content Include="Scripts\bootstrap-jasny\README.md" />
+    <Content Include="Scripts\bootstrap-jasny\_config.yml" />
+    <Content Include="Scripts\dropzone\downloads\css\stylus\basic.styl" />
+    <Content Include="Scripts\dropzone\downloads\css\stylus\dropzone.styl" />
+    <Content Include="Scripts\dropzone\downloads\readme.md" />
+    <None Include="Scripts\jquery-2.1.0.intellisense.js">
+      <DependentUpon>jquery-2.1.0.js</DependentUpon>
+    </None>
+    <Content Include="Scripts\ark.min.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js">
+      <DependentUpon>bootstrap.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\dropzone\downloads\css\basic.css" />
+    <Content Include="Scripts\dropzone\downloads\css\dropzone.css" />
+    <Content Include="Scripts\dropzone\downloads\dropzone-amd-module.js" />
+    <Content Include="Scripts\dropzone\downloads\dropzone-amd-module.min.js" />
+    <Content Include="Scripts\dropzone\downloads\dropzone.js" />
+    <Content Include="Scripts\dropzone\downloads\dropzone.min.js" />
+    <Content Include="Scripts\dropzone\downloads\images\spritemap%402x.png" />
+    <Content Include="Scripts\dropzone\downloads\images\spritemap.png" />
+    <Content Include="Scripts\dropzone\dropzone-amd-module.js" />
+    <Content Include="Scripts\dropzone\dropzone-amd-module.min.js" />
+    <Content Include="Scripts\dropzone\dropzone.js" />
+    <Content Include="Scripts\dropzone\dropzone.min.js" />
+    <Content Include="Scripts\dropzone\images\spritemap%402x.png" />
+    <Content Include="Scripts\dropzone\images\spritemap.png" />
+    <Content Include="Scripts\fullcalendar.js" />
+    <Content Include="Scripts\fullcalendar.min.js">
+      <DependentUpon>fullcalendar.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\gcal.js" />
+    <Content Include="Scripts\jquery-2.1.0.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.js">
+      <DependentUpon>jquery-2.1.0.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery-2.1.0.min.map">
+      <DependentUpon>jquery-2.1.0.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery-autosize\.bower.json" />
+    <Content Include="Scripts\jquery-autosize\autosize.jquery.json" />
+    <Content Include="Scripts\jquery-autosize\bower.json" />
+    <Content Include="Scripts\jquery-autosize\package.json" />
+    <Content Include="Scripts\jquery-autosize\readme.md" />
+    <Content Include="Scripts\jquery-flot\.bower.json" />
+    <Content Include="Scripts\jquery-flot\.travis.yml" />
+    <Content Include="Scripts\jquery-flot\API.md" />
+    <Content Include="Scripts\jquery-flot\component.json" />
+    <Content Include="Scripts\jquery-flot\CONTRIBUTING.md" />
+    <Content Include="Scripts\jquery-flot\examples\ajax\data-eu-gdp-growth-1.json" />
+    <Content Include="Scripts\jquery-flot\examples\ajax\data-eu-gdp-growth-2.json" />
+    <Content Include="Scripts\jquery-flot\examples\ajax\data-eu-gdp-growth-3.json" />
+    <Content Include="Scripts\jquery-flot\examples\ajax\data-eu-gdp-growth-4.json" />
+    <Content Include="Scripts\jquery-flot\examples\ajax\data-eu-gdp-growth-5.json" />
+    <Content Include="Scripts\jquery-flot\examples\ajax\data-eu-gdp-growth.json" />
+    <Content Include="Scripts\jquery-flot\examples\ajax\data-japan-gdp-growth.json" />
+    <Content Include="Scripts\jquery-flot\examples\ajax\data-usa-gdp-growth.json" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\tz\africa" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\tz\antarctica" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\tz\asia" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\tz\australasia" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\tz\backward" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\tz\etcetera" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\tz\europe" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\tz\factory" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\tz\iso3166.tab" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\tz\leapseconds" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\tz\northamerica" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\tz\pacificnew" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\tz\solar87" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\tz\solar88" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\tz\solar89" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\tz\southamerica" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\tz\systemv" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\tz\yearistype.sh" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\tz\zone.tab" />
+    <Content Include="Scripts\jquery-flot\FAQ.md" />
+    <Content Include="Scripts\jquery-flot\flot.jquery.json" />
+    <Content Include="Scripts\jquery-flot\Makefile" />
+    <Content Include="Scripts\jquery-flot\NEWS.md" />
+    <Content Include="Scripts\jquery-flot\package.json" />
+    <Content Include="Scripts\jquery-flot\PLUGINS.md" />
+    <Content Include="Scripts\jquery-flot\README.md" />
+    <Content Include="Scripts\jquery.easy-pie-chart\.bower.json" />
+    <Content Include="Scripts\jquery.easy-pie-chart\.travis.yml" />
+    <Content Include="Scripts\jquery.easy-pie-chart\bower.json" />
+    <Content Include="Scripts\jquery.easy-pie-chart\changelog.md" />
+    <Content Include="Scripts\jquery.easy-pie-chart\karma.conf.coffee" />
+    <Content Include="Scripts\jquery.easy-pie-chart\package.json" />
+    <Content Include="Scripts\jquery.easy-pie-chart\Readme.md" />
+    <None Include="Scripts\jquery.validate-vsdoc.js">
+      <DependentUpon>jquery.validate.js</DependentUpon>
+    </None>
+    <Content Include="Scripts\jquery-autosize\demo.html" />
+    <Content Include="Scripts\jquery-autosize\jquery.autosize.js" />
+    <Content Include="Scripts\jquery-autosize\jquery.autosize.min.js" />
+    <Content Include="Scripts\jquery-flot\examples\ajax\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\annotating\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\axes-interacting\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\axes-multiple\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\date.js" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time-zones\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\axes-time\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\background.png" />
+    <Content Include="Scripts\jquery-flot\examples\basic-options\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\basic-usage\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\canvas\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\categories\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\examples.css" />
+    <Content Include="Scripts\jquery-flot\examples\image\hs-2004-27-a-large-web.jpg" />
+    <Content Include="Scripts\jquery-flot\examples\image\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\interacting\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\navigate\arrow-down.gif" />
+    <Content Include="Scripts\jquery-flot\examples\navigate\arrow-left.gif" />
+    <Content Include="Scripts\jquery-flot\examples\navigate\arrow-right.gif" />
+    <Content Include="Scripts\jquery-flot\examples\navigate\arrow-up.gif" />
+    <Content Include="Scripts\jquery-flot\examples\navigate\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\percentiles\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\realtime\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\resize\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\selection\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\series-errorbars\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\series-pie\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\series-toggle\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\series-types\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\shared\jquery-ui\jquery-ui.min.css" />
+    <Content Include="Scripts\jquery-flot\examples\shared\jquery-ui\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery-flot\examples\stacking\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\symbols\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\threshold\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\tracking\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\visitors\index.html" />
+    <Content Include="Scripts\jquery-flot\examples\zooming\index.html" />
+    <Content Include="Scripts\jquery-flot\excanvas.js" />
+    <Content Include="Scripts\jquery-flot\excanvas.min.js" />
+    <Content Include="Scripts\jquery-flot\jquery.colorhelpers.js" />
+    <Content Include="Scripts\jquery-flot\jquery.flot.canvas.js" />
+    <Content Include="Scripts\jquery-flot\jquery.flot.categories.js" />
+    <Content Include="Scripts\jquery-flot\jquery.flot.crosshair.js" />
+    <Content Include="Scripts\jquery-flot\jquery.flot.errorbars.js" />
+    <Content Include="Scripts\jquery-flot\jquery.flot.fillbetween.js" />
+    <Content Include="Scripts\jquery-flot\jquery.flot.image.js" />
+    <Content Include="Scripts\jquery-flot\jquery.flot.js" />
+    <Content Include="Scripts\jquery-flot\jquery.flot.navigate.js" />
+    <Content Include="Scripts\jquery-flot\jquery.flot.pie.js" />
+    <Content Include="Scripts\jquery-flot\jquery.flot.resize.js" />
+    <Content Include="Scripts\jquery-flot\jquery.flot.selection.js" />
+    <Content Include="Scripts\jquery-flot\jquery.flot.stack.js" />
+    <Content Include="Scripts\jquery-flot\jquery.flot.symbol.js" />
+    <Content Include="Scripts\jquery-flot\jquery.flot.threshold.js" />
+    <Content Include="Scripts\jquery-flot\jquery.flot.time.js" />
+    <Content Include="Scripts\jquery-flot\jquery.js" />
+    <Content Include="Scripts\jquery-flot\LICENSE.txt" />
+    <Content Include="Scripts\jquery-ui-1.10.4.js" />
+    <Content Include="Scripts\jquery-ui-1.10.4.min.js">
+      <DependentUpon>jquery-ui-1.10.4.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.easy-pie-chart\dist\angular.easypiechart.js" />
+    <Content Include="Scripts\jquery.easy-pie-chart\dist\angular.easypiechart.min.js" />
+    <Content Include="Scripts\jquery.easy-pie-chart\dist\easypiechart.js" />
+    <Content Include="Scripts\jquery.easy-pie-chart\dist\easypiechart.min.js" />
+    <Content Include="Scripts\jquery.easy-pie-chart\dist\jquery.easypiechart.js" />
+    <Content Include="Scripts\jquery.easy-pie-chart\dist\jquery.easypiechart.min.js" />
+    <Content Include="Scripts\jquery.easy-pie-chart\Gruntfile.js" />
+    <Content Include="Scripts\jquery.easy-pie-chart\src\angular.directive.js" />
+    <Content Include="Scripts\jquery.easy-pie-chart\src\easypiechart.js" />
+    <Content Include="Scripts\jquery.easy-pie-chart\src\jquery.plugin.js" />
+    <Content Include="Scripts\jquery.easy-pie-chart\src\renderer\canvas.js" />
+    <Content Include="Scripts\jquery.easy-pie-chart\test\polyfills\bind.js" />
+    <Content Include="Scripts\jquery.easy-pie-chart\test\unit\angular.directive.js" />
+    <Content Include="Scripts\jquery.uniform.js" />
+    <Content Include="Scripts\jquery.uniform.min.js">
+      <DependentUpon>jquery.uniform.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js">
+      <DependentUpon>jquery.validate.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.validate.unobtrusive.js">
+      <DependentUpon>jquery.validate.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js">
+      <DependentUpon>jquery.validate.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\locales\bootstrap-datepicker.ar.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.az.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.bg.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ca.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cs.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cy.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.da.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.de.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.el.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.es.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.et.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fa.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fi.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fr.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.gl.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.he.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hr.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hu.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.id.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.is.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.it.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ja.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ka.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kk.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kr.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lt.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lv.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.mk.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ms.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nb.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl-BE.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.no.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pl.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt-BR.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ro.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs-latin.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ru.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sk.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sl.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sq.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sv.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sw.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.th.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.tr.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ua.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.vi.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.zh-CN.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.js" />
+    <Content Include="Scripts\modernizr-2.7.1.js" />
+    <Content Include="Scripts\moment-with-langs.js" />
+    <Content Include="Scripts\moment-with-langs.min.js">
+      <DependentUpon>moment-with-langs.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js">
+      <DependentUpon>moment.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js">
+      <DependentUpon>respond.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Select2-locales\select2_locale_ar.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_bg.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ca.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_cs.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_da.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_de.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_el.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_es.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_et.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_eu.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_fa.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_fi.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_fr.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_gl.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_he.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_hr.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_hu.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_id.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_is.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_it.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ja.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ko.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_lt.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_lv.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_mk.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ms.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_nl.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_no.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_pl.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_pt-BR.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_pt-PT.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ro.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ru.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_sk.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_sv.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_th.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_tr.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ua.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_vi.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_zh-CN.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_zh-TW.js" />
+    <Content Include="Scripts\select2.js" />
+    <Content Include="Scripts\select2.min.js">
+      <DependentUpon>select2.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>7366</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:7366/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
