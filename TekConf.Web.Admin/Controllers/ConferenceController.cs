@@ -44,11 +44,11 @@ namespace TekConf.Web.Admin.Controllers
 		[HttpGet]
 		public ActionResult Create()
 		{
-			var viewModel = new ConferenceCreateViewModel();
+            var viewModel = new ConferenceCreateViewModel();
 			return View(viewModel);
 		}
 
-		[HttpPost]
+        [HttpPost]
 		public async Task<ActionResult> Create(ConferenceCreateViewModel viewModel)
 		{
 		    if (!ModelState.IsValid)
@@ -78,14 +78,15 @@ namespace TekConf.Web.Admin.Controllers
                                     .Project().To<EditConferenceDto>()
                                     .SingleOrDefaultAsync(c => c.Id == id);
 
-			var viewModel = new ConferenceEditViewModel { Conference = dto };
+            var viewModel = new ConferenceEditViewModel(HttpContext.Request.RequestContext.RouteData) { Conference = dto };
 			return View(viewModel);
 
 		}
 
-		[HttpPost]
+        [HttpPost, LockForm]
 		public async Task<ActionResult> Edit(ConferenceEditViewModel viewModel)
 		{
+            viewModel.SetRouteData(HttpContext.Request.RequestContext.RouteData);
             if (!ModelState.IsValid)
             {
                 return View(viewModel);

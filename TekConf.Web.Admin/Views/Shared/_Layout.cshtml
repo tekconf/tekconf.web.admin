@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using TekConf.Web.Admin.Code
+@model dynamic
+@{
+    var viewModel = Model as ViewModelBase;
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -47,6 +52,7 @@
 
             @Html.Partial("_Sidebar")
 
+
             @RenderBody()
         </div>
         <!-- END: BODY -->
@@ -70,11 +76,21 @@
     <script src="~/Scripts/jquery-flot/jquery.flot.resize.js"></script>
     <script src="~/Scripts/select2.min.js"></script>
     <script src="~/Scripts/fullcalendar.min.js"></script>
+    <script src="~/Scripts/jquery.are-you-sure.js"></script>
     <script src="https://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
-	<script src="~/Scripts/ark.min.js"></script>
-	<script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/ark.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.0.2.min.js"></script>
 
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/Views/Shared/Layout/Views.Shared.Layout.js"></script>
     @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        $(function () {
+            wireupSignalR('@(viewModel == null ? "" : (string.IsNullOrWhiteSpace(viewModel.FormName) ? "" : viewModel.FormName))');
+        });
+    </script>
 </body>
 
 @*@Html.Partial("_LoginPartial")

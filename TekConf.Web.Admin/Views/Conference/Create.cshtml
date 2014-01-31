@@ -21,7 +21,7 @@
         {
             <div class="alert alert-danger">@Html.ValidationSummary()</div>
         }
-        @using (Html.BeginForm("Create", "Conference", null, FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("Create", "Conference", null, FormMethod.Post, new { role = "form", enctype = "multipart/form-data", @class = "validateForm" }))
         {
             <div class="row">
                 <div class="col-md-6">
@@ -122,7 +122,7 @@
             </div>
             <div class="row">
                 <div class="form-group">
-                    <input type="submit" value="Create Conference" class="btn btn-primary" />
+                    <input type="submit" value="Save Conference" class="btn btn-primary" />
                 </div>
             </div>
         }

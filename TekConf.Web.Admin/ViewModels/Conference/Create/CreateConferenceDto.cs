@@ -1,11 +1,14 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using TekConf.Web.Admin.Code;
 
 namespace TekConf.Web.Admin.ViewModels
 {
+    [ConferenceEndDateValidator]
     public class CreateConferenceDto
     {
         [Required]
+        [CreateConferenceNameValidator]
         public string Name { get; set; }
 
         [Required]

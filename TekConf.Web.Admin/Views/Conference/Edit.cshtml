@@ -11,12 +11,12 @@
     <div class="header">
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-10">
                     <h3 class="header-title">Edit @Model.Conference.Name</h3>
                     <p class="header-info">Overview and latest statistics</p>
                 </div>
-                <div class="col-md-4">
-                    <button class="btn btn-danger pull-right"><i class="fa fa-trash-o"></i></button>
+                <div class="col-md-2">
+                    <div class="pull-right"><button class="btn btn-success"><i class="fa fa-plus-circle"></i> Add Session</button> <button class="btn btn-danger"><i class="fa fa-trash-o"></i></button></div>
                 </div>
             </div>
         </div>
@@ -24,11 +24,13 @@
 
     <!-- CONTENT -->
     <div class="main-content">
+        @Html.Partial("_DirtyData")
+
         @if (!Html.ViewData.ModelState.IsValid)
         {
             <div class="alert alert-danger">@Html.ValidationSummary()</div>
         }
-        @using (Html.BeginForm("Edit", "Conference", null, FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("Edit", "Conference", null, FormMethod.Post, new { role = "form", enctype = "multipart/form-data", @class = "validateForm", id = Model.FormName }))
         {
             @Html.HiddenFor(m => m.Conference.Id)
             <div class="row">
@@ -138,7 +140,7 @@
             </div>
             <div class="row">
                 <div class="form-group">
-                    <input type="submit" value="Edit Conference" class="btn btn-primary" />
+                    <input type="submit" value="Save Conference" class="btn btn-primary" />
                 </div>
             </div>
         }
