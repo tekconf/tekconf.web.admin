@@ -1,136 +1,147 @@
-﻿@model TekConf.Web.Admin.ViewModels.Conference.ConferenceEditViewModel
+﻿@using TekConf.Web.Admin.Code
+@model TekConf.Web.Admin.ViewModels.Conference.ConferenceEditViewModel
 
 <section class="content">
 
-	<ol class="breadcrumb">
-		<li><i class="fa fa-comments-o"></i> <a href="@Url.Action("Index")">Conferences</a></li>
-		<li class="active"> Edit</li>
-	</ol>
+    <ol class="breadcrumb">
+        <li><i class="fa fa-comments-o"></i> <a href="@Url.Action("Index")">Conferences</a></li>
+        <li class="active"> Edit</li>
+    </ol>
 
-	<div class="header">
-		<div class="col-md-12">
-			<h3 class="header-title">Edit @Model.Conference.Name</h3>
-			<p class="header-info">Overview and latest statistics</p>
-		</div>
-	</div>
+    <div class="header">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3 class="header-title">Edit @Model.Conference.Name</h3>
+                    <p class="header-info">Overview and latest statistics</p>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-danger pull-right"><i class="fa fa-trash-o"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<!-- CONTENT -->
-	<div class="main-content">
+    <!-- CONTENT -->
+    <div class="main-content">
+        @if (!Html.ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">@Html.ValidationSummary()</div>
+        }
+        @using (Html.BeginForm("Edit", "Conference", null, FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
+        {
+            @Html.HiddenFor(m => m.Conference.Id)
+            <div class="row">
+                <div class="col-md-6">
 
-		@using (Html.BeginForm("Edit", "Conference", null, FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
-		{
-			@Html.HiddenFor(m => m.Conference.Id)
-			<div class="row">
-				<div class="col-md-6">
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.Name)">
+                        @Html.LabelFor(m => m.Conference.Name)
+                        @Html.TextBoxFor(m => m.Conference.Name, new { @class = "form-control", placeholder = "Enter conference name" })
+                    </div>
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.Tagline)">
+                        @Html.LabelFor(m => m.Conference.Tagline)
+                        @Html.TextBoxFor(m => m.Conference.Tagline, new { @class = "form-control", placeholder = "Enter conference tag line" })
+                    </div>
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.DefaultTalkLength)">
+                        @Html.LabelFor(m => m.Conference.DefaultTalkLength, "Default talk length")
+                        @Html.TextBoxFor(m => m.Conference.DefaultTalkLength, new { @class = "form-control", data_mask = "99" })
+                        <span class="help-block">Enter the default talk length, in minutes. This can be changed per session.</span>
+                    </div>
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.IsOnline)">
+                        @Html.CheckBoxFor(m => m.Conference.IsOnline, new { @class = "checker" }) Is hosted online?
+                    </div>
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.WillProvideVideos)">
+                        @Html.CheckBoxFor(m => m.Conference.WillProvideVideos, new { @class = "checker" }) Will the conference record sessions?
+                    </div>
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.Description)">
+                        @Html.LabelFor(m => m.Conference.Description)
+                        @Html.TextAreaFor(m => m.Conference.Description, new { @class = "form-control", placeholder = "Enter conference description", rows = 6 })
+                    </div>
 
-					<div class="form-group">
-						@Html.LabelFor(m => m.Conference.Name)
-						@Html.TextBoxFor(m => m.Conference.Name, new { @class = "form-control", placeholder = "Enter conference name" })
-					</div>
-					<div class="form-group">
-						@Html.LabelFor(m => m.Conference.Tagline)
-						@Html.TextBoxFor(m => m.Conference.Tagline, new { @class = "form-control", placeholder = "Enter conference tag line" })
-					</div>
-					<div class="form-group">
-						@Html.LabelFor(m => m.Conference.DefaultTalkLength, "Default talk length")
-						@Html.TextBoxFor(m => m.Conference.DefaultTalkLength, new { @class = "form-control", data_mask = "99" })
-						<span class="help-block">Enter the default talk length, in minutes. This can be changed per session.</span>
-					</div>
-					<div class="form-group">
-						@Html.CheckBoxFor(m => m.Conference.IsOnline, new { @class = "checker" }) Is hosted online?
-					</div>
-					<div class="form-group">
-						@Html.CheckBoxFor(m => m.Conference.WillProvideVideos, new { @class = "checker" }) Will the conference record sessions?
-					</div>
-					<div class="form-group">
-						@Html.LabelFor(m => m.Conference.Description)
-						@Html.TextAreaFor(m => m.Conference.Description, new { @class = "form-control", placeholder = "Enter conference description", rows = 6 })
-					</div>
-
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label>Image Upload Widget</label><br>
-						<div class="fileinput fileinput-new" data-provides="fileinput">
-							<div class="fileinput-new thumbnail" style="width: 260px; height: 180px;">
-								@if (!string.IsNullOrWhiteSpace(Model.Conference.ImageUrl))
-								{
-									<img src="@Model.Conference.ImageUrl" />
-								}
-								else
-								{
-									<img src="data:image/jpg;base64,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UeGtSl0XxJoslxGI5zp+pQrJtSZQu+GeG4hLKHEYcbqzPA3wd8MeBdWuvEceoeJ/Ffiq8s/7Nl8U+Ntdn8Qa4um+aJvsEFw8dvb29uZVDt5Nqkr42vKyEqfWD1/AfyFJQBw+m+ANH0rx34l+IVvc6m+teKdM0rStQtZprVtLht9IjSK2ezhSyju45nWMGdp724RiT5ccQwAeJ/AGj+LPEHgrxHqNzqcN94D1O81XSIrKa1jtLm4voIreVNSSeyuZpoVSFTGtrPZuGLFpHBCjuKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKP/r9vz/p6dqKP8/5/wA/WgA6/wCe9FHX/Pf29aPbp06/5x+P15oAKOcCj/P8vw69KP8AP+f8/hQAUUc0v8uP/r/06f05AE/n0o7fXIPQ/oR6+o5o9f8A63rx9OnX19M0fT15/Ig//q+tABz6EY4565/z6dO/NFBzjuCM9+v6nrn0Hvmj65+vUfQDJPsPT3oAKKP8/wCfzH5iigBT1/AfyFJSnr+A/kKSgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKBxRRQAf5/wA+/wCnXjphQBjk49Opxnk8cZ5+hpKKAF6Zxg5479M55wB0HQc88+1J0Pr1/rx2/wD1H1oooAXP5+v4gjH0Iz35JpKKKACiiigA/wA/n1/OiiigAPP/ANbj+WKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//2Q==" />
-								}
-							</div>
-							<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
-							<div>
-								<span class="btn btn-info btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="ImageFile"></span>
-								<a href="#" class="btn btn-info fileinput-exists" data-dismiss="fileinput">Remove</a>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						@Html.LabelFor(m => m.Conference.Start, "Conference start date")
-						<div class="input-group">
-							@Html.TextBoxFor(m => m.Conference.Start, new { @class = "form-control datepicker", placeholder = "Enter start date", data_date_format = "mm/dd/yyyy" })
-							<span class="input-group-addon">
-								<i class="fa fa-calendar"></i>
-							</span>
-						</div>
-					</div>
-					<div class="form-group">
-						@Html.LabelFor(m => m.Conference.End, "Conference end date")
-						<div class="input-group">
-							@Html.TextBoxFor(m => m.Conference.End, new { @class = "form-control datepicker", placeholder = "Enter end date", data_date_format = "mm/dd/yyyy" })
-							<span class="input-group-addon">
-								<i class="fa fa-calendar"></i>
-							</span>
-						</div>
-					</div>
-					<div class="form-group">
-						@Html.LabelFor(m => m.Conference.CallForSpeakersOpens, "Call for speakers open date")
-						<div class="input-group">
-							@Html.TextBoxFor(m => m.Conference.CallForSpeakersOpens, new { @class = "form-control datepicker", placeholder = "Enter call for speakers open date", data_date_format = "mm/dd/yyyy" })
-							<span class="input-group-addon">
-								<i class="fa fa-calendar"></i>
-							</span>
-						</div>
-					</div>
-					<div class="form-group">
-						@Html.LabelFor(m => m.Conference.CallForSpeakersCloses, "Call for speakers close date")
-						<div class="input-group">
-							@Html.TextBoxFor(m => m.Conference.CallForSpeakersCloses, new { @class = "form-control datepicker", placeholder = "Enter call for speakers close date", data_date_format = "mm/dd/yyyy" })
-							<span class="input-group-addon">
-								<i class="fa fa-calendar"></i>
-							</span>
-						</div>
-					</div>
-					<div class="form-group">
-						@Html.LabelFor(m => m.Conference.RegistrationOpens, "Registration open date")
-						<div class="input-group">
-							@Html.TextBoxFor(m => m.Conference.RegistrationOpens, new { @class = "form-control datepicker", placeholder = "Enter call for registration open date", data_date_format = "mm/dd/yyyy" })
-							<span class="input-group-addon">
-								<i class="fa fa-calendar"></i>
-							</span>
-						</div>
-					</div>
-					<div class="form-group">
-						@Html.LabelFor(m => m.Conference.RegistrationCloses, "Registration close date")
-						<div class="input-group">
-							@Html.TextBoxFor(m => m.Conference.RegistrationCloses, new { @class = "form-control datepicker", placeholder = "Enter call for registration close date", data_date_format = "mm/dd/yyyy" })
-							<span class="input-group-addon">
-								<i class="fa fa-calendar"></i>
-							</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="form-group">
-					<input type="submit" value="Edit Conference" class="btn btn-primary" />
-				</div>
-			</div>
-		}
-	</div>
-	<!-- END: CONTENT -->
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Image Upload Widget</label><br>
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail" style="width: 260px; height: 180px;">
+                                @if (!string.IsNullOrWhiteSpace(Model.Conference.ImageUrl))
+                                {
+                                    <img src="@Model.Conference.ImageUrl" />
+                                }
+                                else
+                                {
+                                    <img src="data:image/jpg;base64,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UeGtSl0XxJoslxGI5zp+pQrJtSZQu+GeG4hLKHEYcbqzPA3wd8MeBdWuvEceoeJ/Ffiq8s/7Nl8U+Ntdn8Qa4um+aJvsEFw8dvb29uZVDt5Nqkr42vKyEqfWD1/AfyFJQBw+m+ANH0rx34l+IVvc6m+teKdM0rStQtZprVtLht9IjSK2ezhSyju45nWMGdp724RiT5ccQwAeJ/AGj+LPEHgrxHqNzqcN94D1O81XSIrKa1jtLm4voIreVNSSeyuZpoVSFTGtrPZuGLFpHBCjuKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKP/r9vz/p6dqKP8/5/wA/WgA6/wCe9FHX/Pf29aPbp06/5x+P15oAKOcCj/P8vw69KP8AP+f8/hQAUUc0v8uP/r/06f05AE/n0o7fXIPQ/oR6+o5o9f8A63rx9OnX19M0fT15/Ig//q+tABz6EY4565/z6dO/NFBzjuCM9+v6nrn0Hvmj65+vUfQDJPsPT3oAKKP8/wCfzH5iigBT1/AfyFJSnr+A/kKSgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKBxRRQAf5/wA+/wCnXjphQBjk49Opxnk8cZ5+hpKKAF6Zxg5479M55wB0HQc88+1J0Pr1/rx2/wD1H1oooAXP5+v4gjH0Iz35JpKKKACiiigA/wA/n1/OiiigAPP/ANbj+WKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//2Q==" />
+                                }
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                            <div>
+                                <span class="btn btn-info btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="ImageFile"></span>
+                                <a href="#" class="btn btn-info fileinput-exists" data-dismiss="fileinput">Remove</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.Start)">
+                        @Html.LabelFor(m => m.Conference.Start, "Conference start date")
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.Conference.Start, new { @class = "form-control datepicker", placeholder = "Enter start date", data_date_format = "mm/dd/yyyy" })
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.End)">
+                        @Html.LabelFor(m => m.Conference.End, "Conference end date")
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.Conference.End, new { @class = "form-control datepicker", placeholder = "Enter end date", data_date_format = "mm/dd/yyyy" })
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.CallForSpeakersOpens)">
+                        @Html.LabelFor(m => m.Conference.CallForSpeakersOpens, "Call for speakers open date")
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.Conference.CallForSpeakersOpens, new { @class = "form-control datepicker", placeholder = "Enter call for speakers open date", data_date_format = "mm/dd/yyyy" })
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.CallForSpeakersCloses)">
+                        @Html.LabelFor(m => m.Conference.CallForSpeakersCloses, "Call for speakers close date")
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.Conference.CallForSpeakersCloses, new { @class = "form-control datepicker", placeholder = "Enter call for speakers close date", data_date_format = "mm/dd/yyyy" })
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.RegistrationOpens)">
+                        @Html.LabelFor(m => m.Conference.RegistrationOpens, "Registration open date")
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.Conference.RegistrationOpens, new { @class = "form-control datepicker", placeholder = "Enter call for registration open date", data_date_format = "mm/dd/yyyy" })
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.RegistrationCloses)">
+                        @Html.LabelFor(m => m.Conference.RegistrationCloses, "Registration close date")
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.Conference.RegistrationCloses, new { @class = "form-control datepicker", placeholder = "Enter call for registration close date", data_date_format = "mm/dd/yyyy" })
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <input type="submit" value="Edit Conference" class="btn btn-primary" />
+                </div>
+            </div>
+        }
+    </div>
+    <!-- END: CONTENT -->
 </section>

@@ -1,4 +1,5 @@
-﻿@model TekConf.Web.Admin.ViewModels.Conference.ConferenceCreateViewModel
+﻿@using TekConf.Web.Admin.Code
+@model TekConf.Web.Admin.ViewModels.Conference.ConferenceCreateViewModel
 
 <section class="content">
 
@@ -16,34 +17,36 @@
 
     <!-- CONTENT -->
     <div class="main-content">
-
+        @if (!Html.ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">@Html.ValidationSummary()</div>
+        }
         @using (Html.BeginForm("Create", "Conference", null, FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
         {
             <div class="row">
                 <div class="col-md-6">
-
-                    <div class="form-group">
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.Name)">
                         @Html.LabelFor(m => m.Conference.Name)
                         @Html.TextBoxFor(m => m.Conference.Name, new { @class = "form-control", placeholder = "Enter conference name" })
                     </div>
-                    <div class="form-group">
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.Tagline)">
                         @Html.LabelFor(m => m.Conference.Tagline)
                         @Html.TextBoxFor(m => m.Conference.Tagline, new { @class = "form-control", placeholder = "Enter conference tag line" })
                     </div>
-                    <div class="form-group">
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.DefaultTalkLength)">
                         @Html.LabelFor(m => m.Conference.DefaultTalkLength, "Default talk length")
-                        @Html.TextBoxFor(m => m.Conference.DefaultTalkLength, new { @class = "form-control", data_mask="99" })
+                        @Html.TextBoxFor(m => m.Conference.DefaultTalkLength, new { @class = "form-control", data_mask = "99" })
                         <span class="help-block">Enter the default talk length, in minutes. This can be changed per session.</span>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.IsOnline)">
                         @Html.CheckBoxFor(m => m.Conference.IsOnline, new { @class = "checker" }) Is hosted online?
                     </div>
-                    <div class="form-group">
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.WillProvideVideos)">
                         @Html.CheckBoxFor(m => m.Conference.WillProvideVideos, new { @class = "checker" }) Will the conference record sessions?
                     </div>
-                    <div class="form-group">
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.Description)">
                         @Html.LabelFor(m => m.Conference.Description)
-                        @Html.TextAreaFor(m => m.Conference.Description, new { @class = "form-control", placeholder = "Enter conference description", rows=6 })
+                        @Html.TextAreaFor(m => m.Conference.Description, new { @class = "form-control", placeholder = "Enter conference description", rows = 6 })
                     </div>
 
                 </div>
@@ -61,7 +64,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.Start)">
                         @Html.LabelFor(m => m.Conference.Start, "Conference start date")
                         <div class="input-group">
                             @Html.TextBoxFor(m => m.Conference.Start, new { @class = "form-control datepicker", placeholder = "Enter start date", data_date_format = "mm/dd/yyyy" })
@@ -70,7 +73,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.End)">
                         @Html.LabelFor(m => m.Conference.End, "Conference end date")
                         <div class="input-group">
                             @Html.TextBoxFor(m => m.Conference.End, new { @class = "form-control datepicker", placeholder = "Enter end date", data_date_format = "mm/dd/yyyy" })
@@ -79,7 +82,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.CallForSpeakersOpens)">
                         @Html.LabelFor(m => m.Conference.CallForSpeakersOpens, "Call for speakers open date")
                         <div class="input-group">
                             @Html.TextBoxFor(m => m.Conference.CallForSpeakersOpens, new { @class = "form-control datepicker", placeholder = "Enter call for speakers open date", data_date_format = "mm/dd/yyyy" })
@@ -88,7 +91,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.CallForSpeakersCloses)">
                         @Html.LabelFor(m => m.Conference.CallForSpeakersCloses, "Call for speakers close date")
                         <div class="input-group">
                             @Html.TextBoxFor(m => m.Conference.CallForSpeakersCloses, new { @class = "form-control datepicker", placeholder = "Enter call for speakers close date", data_date_format = "mm/dd/yyyy" })
@@ -97,7 +100,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.RegistrationOpens)">
                         @Html.LabelFor(m => m.Conference.RegistrationOpens, "Registration open date")
                         <div class="input-group">
                             @Html.TextBoxFor(m => m.Conference.RegistrationOpens, new { @class = "form-control datepicker", placeholder = "Enter call for registration open date", data_date_format = "mm/dd/yyyy" })
@@ -106,7 +109,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group @Html.ValidationClass(x => x.Conference.RegistrationCloses)">
                         @Html.LabelFor(m => m.Conference.RegistrationCloses, "Registration close date")
                         <div class="input-group">
                             @Html.TextBoxFor(m => m.Conference.RegistrationCloses, new { @class = "form-control datepicker", placeholder = "Enter call for registration close date", data_date_format = "mm/dd/yyyy" })

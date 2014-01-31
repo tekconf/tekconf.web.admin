@@ -1,10 +1,19 @@
 using System;
+using System.Linq.Expressions;
 using System.Text.RegularExpressions;
+using System.Web.Mvc;
+using System.Web.Mvc.Html;
+using TekConf.Web.Admin.ViewModels.Conference;
 
 namespace TekConf.Web.Admin.Code
 {
     public static class Helpers
     {
+        public static string ValidationClass<TModel, TProperty>(this HtmlHelper<TModel> helper, Expression<Func<TModel, TProperty>> expression)
+        {
+            return helper.ViewData.ModelState.IsValidField(helper.NameFor(expression).ToString()) ? null : "has-error";
+        }
+
 	    public static string ToSafeString(this DateTime? dateTime, string format)
 	    {
 		    if (dateTime.HasValue)

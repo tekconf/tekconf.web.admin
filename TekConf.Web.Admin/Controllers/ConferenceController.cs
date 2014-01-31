@@ -10,6 +10,7 @@ using TekConf.Web.Admin.Code;
 using TekConf.Web.Admin.ViewModels.Conference;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
+using AutoMapper.QueryableExtensions;
 
 namespace TekConf.Web.Admin.Controllers
 {
@@ -28,8 +29,16 @@ namespace TekConf.Web.Admin.Controllers
 
 		public async Task<ActionResult> Index()
 		{
-			var conferences = await _context.Conferences.AsNoTracking().ToListAsync();
-			return View(conferences);
+			var dtos = await _context.Conferences
+                                .AsNoTracking()
+                                .Project().To<ConferenceDto>()
+                                .ToListAsync();
+
+		    var viewModel = new ConferenceIndexViewModel
+		    {
+		        Conferences = dtos
+		    };
+			return View(viewModel);
 		}
 
 		[HttpGet]
@@ -42,6 +51,11 @@ namespace TekConf.Web.Admin.Controllers
 		[HttpPost]
 		public async Task<ActionResult> Create(ConferenceCreateViewModel viewModel)
 		{
+		    if (!ModelState.IsValid)
+		    {
+                return View(viewModel);
+		    }
+
 			var conference = Mapper.Map<Conference>(viewModel.Conference);
 			if (conference != null)
 			{
@@ -57,33 +71,12 @@ namespace TekConf.Web.Admin.Controllers
 			return RedirectToAction("Index");
 		}
 
-		private string SaveUploadedImage(HttpPostedFileBase imageFile, Conference conference)
-		{
-			string url = null;
-			if (imageFile != null)
-			{
-				IImageSaver imageSaver = null;
-
-#if DEBUG
-				//TODO, Move this to configuration
-				imageSaver = new FileSystemImageSaver();
-#else
-				IImageSaverConfiguration configuration = new ImageSaverConfiguration();
-				imageSaver = new AzureImageSaver(configuration);
-#endif
-
-				url = imageSaver.SaveImage(conference.Name.GenerateSlug() + Path.GetExtension(imageFile.FileName), imageFile);
-			}
-
-			return url;
-		}
-
 		[HttpGet]
 		public async Task<ActionResult> Edit(int id)
 		{
-			var conference = await _context.Conferences.SingleOrDefaultAsync(c => c.Id == id);
-
-			var dto = Mapper.Map<EditConferenceDto>(conference);
+            var dto = await _context.Conferences.AsNoTracking()
+                                    .Project().To<EditConferenceDto>()
+                                    .SingleOrDefaultAsync(c => c.Id == id);
 
 			var viewModel = new ConferenceEditViewModel { Conference = dto };
 			return View(viewModel);
@@ -93,7 +86,12 @@ namespace TekConf.Web.Admin.Controllers
 		[HttpPost]
 		public async Task<ActionResult> Edit(ConferenceEditViewModel viewModel)
 		{
-			var conference = await _context.Conferences.SingleOrDefaultAsync(c => c.Id == viewModel.Conference.Id);
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+
+            var conference = await _context.Conferences.AsNoTracking().SingleOrDefaultAsync(c => c.Id == viewModel.Conference.Id);
 			conference.CallForSpeakersCloses = viewModel.Conference.CallForSpeakersCloses;
 			conference.CallForSpeakersOpens = viewModel.Conference.CallForSpeakersOpens;
 			conference.DefaultTalkLength = viewModel.Conference.DefaultTalkLength;
@@ -111,11 +109,40 @@ namespace TekConf.Web.Admin.Controllers
 			conference.Tagline = viewModel.Conference.Tagline;
 			conference.WillProvideVideos = viewModel.Conference.WillProvideVideos;
 
-			//var url = SaveUploadedImage(viewModel.ImageFile, conference);
-			//conference.ImageUrl = url;
+		    if (viewModel.ImageFile != null)
+		    {
+                var url = SaveUploadedImage(viewModel.ImageFile, conference);
+		        if (!string.IsNullOrWhiteSpace(url))
+		        {
+                    conference.ImageUrl = url;
+                }
+            }
 
 			await _context.SaveChangesAsync();
 			return RedirectToAction("Index");
 		}
+
+        private string SaveUploadedImage(HttpPostedFileBase imageFile, Conference conference)
+        {
+            string url = null;
+            if (imageFile != null)
+            {
+                IImageSaver imageSaver = null;
+
+#if DEBUG
+                //TODO, Move this to configuration
+                imageSaver = new FileSystemImageSaver();
+#else
+				IImageSaverConfiguration configuration = new ImageSaverConfiguration();
+				imageSaver = new AzureImageSaver(configuration);
+#endif
+
+                url = imageSaver.SaveImage(conference.Name.GenerateSlug() + Path.GetExtension(imageFile.FileName), imageFile);
+            }
+
+            return url;
+        }
 	}
+
+
 }

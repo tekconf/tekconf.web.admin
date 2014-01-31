@@ -1,5 +1,5 @@
 ﻿@using TekConf.Web.Admin.Code
-@model List<TekConf.Data.Models.Conference>
+@model TekConf.Web.Admin.ViewModels.Conference.ConferenceIndexViewModel
 
 
 <section class="content">
@@ -18,13 +18,13 @@
     <!-- CONTENT -->
     <div class="main-content">
 
-        @foreach (var conference in Model)
+        @foreach (var conference in Model.Conferences)
         {
             <div class="row">
                 <div class="col-md-2">
                     <img src="@conference.ImageUrl" />
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <span class="label label-success">LIVE</span> <h3 style="display:inline;">@conference.Name</h3>
                     <a href="@Url.Action("Edit", "Conference", new { id = conference.Id })" class="btn btn-primary pull-right">Edit</a>
                     <br /><br />
@@ -36,19 +36,13 @@
                             @((DateTime.Now - @conference.Start.Value).Days) <text>days until</text> @conference.Name
                         </div>
                     }
-
-                    <br />
-                    Status : Do any sessions have missing <br />
-                    <ul>
-                        <li>rooms</li>
-                        <li>start/end times</li>
-                        <li>speakers</li>
-                        <li>abstract</li>
-                    </ul>
-                    How many sessions have been scheduled/live?<br />
-                    How many sessions have been favorited?
+                    <span class="label label-success">10 sessions live</span> <span class="label label-success">5 sessions favorited</span><br/>
+                    <span class="label label-danger">1 session missing room</span>
+                    <span class="label label-danger">1 session missing start time</span>
+                    <span class="label label-warning">1 session missing speaker</span>
+                    <span class="label label-warning">1 session missing abstract</span>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <div class="panel ">
                         <div class="panel-heading">
                             <h3 class="panel-title">Overview</h3>
@@ -66,22 +60,6 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="panel ">
-                        <div class="panel-heading">
-                            <div class="panel-actions">
-                                <div id="reportrange" class="pull-right">
-                                    <i class="fa fa-calendar"></i>
-                                    <span>This month</span> <b class="caret"></b>
-                                </div>
-                            </div>
-                            <h3 class="panel-title">Tickets sold</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div id="dashboardConversions-@conference.Slug" class="chart"></div>
-                        </div>
-                    </div>
-                </div>
             </div>
         }
     </div>
