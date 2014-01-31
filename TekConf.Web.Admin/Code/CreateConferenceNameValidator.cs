@@ -7,6 +7,7 @@ using System.Web;
 using Ninject;
 using TekConf.Data;
 using TekConf.Web.Admin.ViewModels;
+using TekConf.Web.Admin.ViewModels.Conference;
 
 namespace TekConf.Web.Admin.Code
 {
@@ -35,6 +36,38 @@ namespace TekConf.Web.Admin.Code
             if (dto.Start.Value >= dto.End.Value)
             {
                 this.ErrorMessage = "The End date must be after the Start date.";
+                return false;
+            }
+
+            return true;
+        }
+    }
+
+    public class EditConferenceNameValidator : ValidationAttribute
+    {
+
+        [Inject]
+        public ITekConfContext Context { get; set; }
+        public override bool IsValid(object value)
+        {
+            if (value == null)
+            {
+                return true;
+            }
+
+            if (!(value is EditConferenceDto))
+            {
+                return true;
+            }
+
+            var dto = value as EditConferenceDto;
+
+            var conferenceName = value.ToString().ToLower();
+            var conference = Context.Conferences.AsNoTracking().SingleOrDefault(c => c.Name.ToLower() == conferenceName);
+
+            if (conference != null && conference.Id != dto.Id)
+            {
+                this.ErrorMessage = string.Format("The conference name must be unique. {0} has already been saved to TekConf.", value.ToString());
                 return false;
             }
 
