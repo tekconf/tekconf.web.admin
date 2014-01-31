@@ -21,11 +21,20 @@
 		@foreach (var conference in Model)
 		{
 			<div class="row">
-				<div class="col-md-2"><img src="@conference.ImageUrl" /></div>
+				<div class="col-md-2">
+					<img src="@conference.ImageUrl" />
+				</div>
 				<div class="col-md-3">
-					<h3>@conference.Name <span class="label label-success">LIVE</span></h3>
-					@conference.Start.ToSafeString("dddd, MMMM dd, yyyy") - @conference.End.ToSafeString("dddd, MMMM dd, yyyy")<br />
-					@((DateTime.Now - @conference.Start.Value).Days) days until @conference.Name starts<br />
+					<span class="label label-success">LIVE</span> <h3 style="display:inline;">@conference.Name</h3>
+					<a href="@Url.Action("Edit", "Conference", new { id = conference.Id })" class="btn btn-primary pull-right">Edit</a>
+					<br /><br />
+					<div class="well well-sm">
+						@conference.Start.ToSafeString("dddd, MMMM dd, yyyy") - @conference.End.ToSafeString("dddd, MMMM dd, yyyy")<br />
+
+						@((DateTime.Now - @conference.Start.Value).Days) days until @conference.Name
+					</div>
+
+					<br />
 					Status : Do any sessions have missing <br />
 					<ul>
 						<li>rooms</li>
@@ -33,7 +42,7 @@
 						<li>speakers</li>
 						<li>abstract</li>
 					</ul>
-					How many sessions have been scheduled/live?<br/>
+					How many sessions have been scheduled/live?<br />
 					How many sessions have been favorited?
 				</div>
 				<div class="col-md-3">
@@ -53,7 +62,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="col-md-4">
 					<div class="panel ">
 						<div class="panel-heading">

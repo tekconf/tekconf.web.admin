@@ -262,7 +262,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Conference\Create\ConferenceCreateViewModel.cs" />
+    <Compile Include="ViewModels\Conference\Create\ConferenceEditViewModel.cs" />
     <Compile Include="ViewModels\Conference\Create\CreateConferenceDto.cs" />
+    <Compile Include="ViewModels\Conference\Create\EditConferenceDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.Net4.dll">
@@ -1264,6 +1266,7 @@
     <Content Include="Views\Shared\_Sidebar.cshtml" />
     <Content Include="Views\Shared\_Sidebar-Original.cshtml" />
     <Content Include="Views\Conference\Create.cshtml" />
+    <Content Include="Views\Conference\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
