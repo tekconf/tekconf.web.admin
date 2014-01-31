@@ -4,86 +4,86 @@
 
 <section class="content">
 
-	<ol class="breadcrumb">
-		<li class="active"><i class="fa fa-home fa-fw"></i> Conferences</li>
-	</ol>
+    <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-home fa-fw"></i> Conferences</li>
+    </ol>
 
-	<div class="header">
-		<div class="col-md-12">
-			<h3 class="header-title">Conferences</h3>
-			<p class="header-info">Overview and latest statistics</p>
-		</div>
-	</div>
+    <div class="header">
+        <div class="col-md-12">
+            <h3 class="header-title">Conferences</h3>
+            <p class="header-info">Overview and latest statistics</p>
+        </div>
+    </div>
 
-	<!-- CONTENT -->
-	<div class="main-content">
+    <!-- CONTENT -->
+    <div class="main-content">
 
-		@foreach (var conference in Model)
-		{
-			<div class="row">
-				<div class="col-md-2">
-					<img src="@conference.ImageUrl" />
-				</div>
-				<div class="col-md-3">
-					<span class="label label-success">LIVE</span> <h3 style="display:inline;">@conference.Name</h3>
-					<a href="@Url.Action("Edit", "Conference", new { id = conference.Id })" class="btn btn-primary pull-right">Edit</a>
-					<br /><br />
-					<div class="well well-sm">
-						@conference.Start.ToSafeString("dddd, MMMM dd, yyyy") - @conference.End.ToSafeString("dddd, MMMM dd, yyyy")<br />
-                        
-                        @if (conference.Start.HasValue)
-                        {
+        @foreach (var conference in Model)
+        {
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="@conference.ImageUrl" />
+                </div>
+                <div class="col-md-3">
+                    <span class="label label-success">LIVE</span> <h3 style="display:inline;">@conference.Name</h3>
+                    <a href="@Url.Action("Edit", "Conference", new { id = conference.Id })" class="btn btn-primary pull-right">Edit</a>
+                    <br /><br />
+                    @if (conference.Start.HasValue)
+                    {
+                        <div class="well well-sm">
+                            @conference.Start.ToSafeString("dddd, MMMM dd, yyyy") - @conference.End.ToSafeString("dddd, MMMM dd, yyyy")<br />
+
                             @((DateTime.Now - @conference.Start.Value).Days) <text>days until</text> @conference.Name
-                        }
-					</div>
+                        </div>
+                    }
 
-					<br />
-					Status : Do any sessions have missing <br />
-					<ul>
-						<li>rooms</li>
-						<li>start/end times</li>
-						<li>speakers</li>
-						<li>abstract</li>
-					</ul>
-					How many sessions have been scheduled/live?<br />
-					How many sessions have been favorited?
-				</div>
-				<div class="col-md-3">
-					<div class="panel ">
-						<div class="panel-heading">
-							<h3 class="panel-title">Overview</h3>
-						</div>
-						<div class="panel-body">
-							<div class="col-md-6 col-sm-6 col-xs-6 text-center pie-box">
-								<div class="pie-chart" data-percent="73"><span>0%</span></div>
-								<a href="#" class="pie-title">Time slots scheduled</a>
-							</div>
-							<div class="col-md-6 col-sm-6 col-xs-6 text-center pie-box">
-								<div class="pie-chart" data-percent="34" data-bar-color="#1F8A70"><span>0%</span></div>
-								<a href="#" class="pie-title">Tickets sold</a>
-							</div>
-						</div>
-					</div>
-				</div>
+                    <br />
+                    Status : Do any sessions have missing <br />
+                    <ul>
+                        <li>rooms</li>
+                        <li>start/end times</li>
+                        <li>speakers</li>
+                        <li>abstract</li>
+                    </ul>
+                    How many sessions have been scheduled/live?<br />
+                    How many sessions have been favorited?
+                </div>
+                <div class="col-md-3">
+                    <div class="panel ">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Overview</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-6 col-sm-6 col-xs-6 text-center pie-box">
+                                <div class="pie-chart" data-percent="73"><span>0%</span></div>
+                                <a href="#" class="pie-title">Time slots scheduled</a>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6 text-center pie-box">
+                                <div class="pie-chart" data-percent="34" data-bar-color="#1F8A70"><span>0%</span></div>
+                                <a href="#" class="pie-title">Tickets sold</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-				<div class="col-md-4">
-					<div class="panel ">
-						<div class="panel-heading">
-							<div class="panel-actions">
-								<div id="reportrange" class="pull-right">
-									<i class="fa fa-calendar"></i>
-									<span>This month</span> <b class="caret"></b>
-								</div>
-							</div>
-							<h3 class="panel-title">Tickets sold</h3>
-						</div>
-						<div class="panel-body">
-							<div id="dashboardConversions-@conference.Slug" class="chart"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		}
-	</div>
-	<!-- END: CONTENT -->
+                <div class="col-md-4">
+                    <div class="panel ">
+                        <div class="panel-heading">
+                            <div class="panel-actions">
+                                <div id="reportrange" class="pull-right">
+                                    <i class="fa fa-calendar"></i>
+                                    <span>This month</span> <b class="caret"></b>
+                                </div>
+                            </div>
+                            <h3 class="panel-title">Tickets sold</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="dashboardConversions-@conference.Slug" class="chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- END: CONTENT -->
 </section>
