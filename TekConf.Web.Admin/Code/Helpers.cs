@@ -1,9 +1,18 @@
+using System;
 using System.Text.RegularExpressions;
 
 namespace TekConf.Web.Admin.Code
 {
     public static class Helpers
     {
+	    public static string ToSafeString(this DateTime? dateTime, string format)
+	    {
+		    if (dateTime.HasValue)
+			    return dateTime.Value.ToString(format);
+		    else
+			    return "";
+	    }
+
         public static string GenerateSlug(this string phrase)
         {
             if (string.IsNullOrWhiteSpace(phrase))

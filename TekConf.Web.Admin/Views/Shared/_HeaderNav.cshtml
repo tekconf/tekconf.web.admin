@@ -110,7 +110,7 @@
                 {
                     <span class="hidden-small"><i class="fa fa-user fa-lg"></i> @User.Identity.GetUserName()<b class="caret"></b></span>
                     <ul class="dropdown-menu pull-right">
-                        <li><a href="profile.html"><i class="fa fa-user"></i>View Profile</a></li>
+                        <li><a href="@Url.Action("Manage", "Account")"><i class="fa fa-user"></i>View Profile</a></li>
                         <li class="divider"></li>
                         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "form-inline" }))
                         {
@@ -124,7 +124,7 @@
                 {
                     <span class="hidden-small">Login<b class="caret"></b></span>
                     <ul class="dropdown-menu pull-right">
-
+											<li><a href="@Url.Action("Login", "Account")"><i class="fa fa-sign-in"></i>Login</a></li>
                     </ul>
                 }
             </a>
