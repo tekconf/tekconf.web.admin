@@ -30,8 +30,11 @@
 					<br /><br />
 					<div class="well well-sm">
 						@conference.Start.ToSafeString("dddd, MMMM dd, yyyy") - @conference.End.ToSafeString("dddd, MMMM dd, yyyy")<br />
-
-						@((DateTime.Now - @conference.Start.Value).Days) days until @conference.Name
+                        
+                        @if (conference.Start.HasValue)
+                        {
+                            @((DateTime.Now - @conference.Start.Value).Days) <text>days until</text> @conference.Name
+                        }
 					</div>
 
 					<br />
