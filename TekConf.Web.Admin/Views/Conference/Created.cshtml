@@ -1,0 +1,25 @@
+﻿@using TekConf.Web.Admin.Code
+@model TekConf.Web.Admin.ViewModels.Conference.ConferenceCreatedViewModel
+
+<section class="content">
+
+    <ol class="breadcrumb">
+        <li><i class="fa fa-comments-o"></i> <a href="@Url.Action("Index")">Conferences</a></li>
+        <li class="active"> Created</li>
+    </ol>
+
+    <div class="header">
+        <div class="col-md-12">
+            <h3 class="header-title">@Model.Conference.Name was created</h3>
+            <p class="header-info">Overview and latest statistics</p>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="main-content">
+        You've created your conference successfully. There are @((DateTime.Now - @Model.Conference.Start.Value).Days) <text>days until</text> @Model.Conference.Name
+        <br/>
+        Next Steps : Find some speakers, add some sessions, finish filling out conference information
+    </div>
+    <!-- END: CONTENT -->
+</section>

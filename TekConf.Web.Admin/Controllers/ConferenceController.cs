@@ -68,8 +68,27 @@ namespace TekConf.Web.Admin.Controllers
 				_context.Conferences.Add(conference);
 				await _context.SaveChangesAsync();
 			}
-			return RedirectToAction("Index");
+            if (conference != null)
+            {
+			    return RedirectToAction("Created", new { id = conference.Id });
+            }
+            else
+            {
+			    return RedirectToAction("Index");
+            }
 		}
+
+	    [HttpGet]
+	    public async Task<ActionResult> Created(int id)
+	    {
+            var dto = await _context.Conferences.AsNoTracking()
+                        .Project().To<ConferenceDetailDto>()
+                        .SingleOrDefaultAsync(c => c.Id == id);
+
+	        var viewModel = new ConferenceCreatedViewModel() {Conference = dto};
+	        
+            return View(viewModel);
+	    }
 
 		[HttpGet]
 		public async Task<ActionResult> Edit(int id)

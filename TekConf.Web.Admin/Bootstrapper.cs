@@ -21,6 +21,7 @@ namespace TekConf.Web.Admin
 				.ForMember(x => x.Id, opt => opt.Ignore());
 
 		    Mapper.CreateMap<Conference, ConferenceDto>();
+		    Mapper.CreateMap<Conference, ConferenceDetailDto>();
 
 		}
 	}
