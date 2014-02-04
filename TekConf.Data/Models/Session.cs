@@ -11,7 +11,8 @@ namespace TekConf.Data.Models
         public string Description { get; set; }
         public DateTime? Start { get; set; }
         public DateTime? End { get; set; }
-
+        public bool WillProvideVideo { get; set; }
+        public int? TalkLength { get; set; }
         public Difficulty Difficulty { get; set; }
         
         //One-to-one
@@ -23,7 +24,6 @@ namespace TekConf.Data.Models
         public virtual ICollection<SessionLink> Links { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
         public virtual ICollection<Prerequisite> Prerequisites { get; set; }
-
         
         public virtual Conference Conference { get; set; }
 

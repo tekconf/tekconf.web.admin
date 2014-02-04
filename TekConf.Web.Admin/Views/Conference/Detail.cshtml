@@ -1,0 +1,131 @@
+﻿@using System.Globalization
+@using TekConf.Web.Admin.Code
+@model TekConf.Web.Admin.ViewModels.Conference.ConferenceDetailViewModel
+
+<section class="content">
+
+    <ol class="breadcrumb">
+        <li><i class="fa fa-comments-o"></i> <a href="@Url.Action("Index")">Conferences</a></li>
+        <li class="active"> Detail</li>
+    </ol>
+
+    <div class="header">
+        <div class="col-md-12">
+            <div class="col-sm-1 col-xs-1 col-md-1 spacerBottom20">
+                <img src="@Model.Conference.ImageUrl" style="height:90px;width:130px;" />
+            </div>
+            <div class="col-sm-4 col-xs-4 col-md-4">
+                <h3 class="header-title verticalTop"> @Model.Conference.Name</h3>
+                <p class="header-info">Overview and latest statistics</p>
+            </div>
+            <div class="col-md-3">
+                @if (Model.Conference.Start.HasValue)
+                {
+                    <h4>@Model.Conference.Start.ToSafeString("dddd, MMMM dd, yyyy")<text> - </text>@Model.Conference.End.ToSafeString("dddd, MMMM dd, yyyy")</h4>
+
+                    @((DateTime.Now - Model.Conference.Start.Value).Days) <text>days until</text> @Model.Conference.Name
+                }
+            </div>
+            <div class="col-md-3">
+                Address
+            </div>
+            <div class="col-md-1">
+                <span class="pull-right">
+                    <a href="@Url.Action("Edit", "Conference", new { id = Model.Conference.Id })" class="btn btn-success">Edit</a>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="main-content">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-12">
+                        @Model.Conference.Description
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        @if (Model.Conference.Sessions == null || !Model.Conference.Sessions.Any())
+                        {
+                            <div class="alert alert-warning">
+                                No sessions to display. Either sessions have not been released, or sessions have not been added to TekConf.<br />
+                                Want to help add sessions? Contact <a href="mailto:robgibbens@arteksoftware.com">RobGibbens@arteksoftware.com</a>
+                            </div>
+                        }
+                        
+                        @{
+                            var sessionGroup = Model.Conference.Sessions
+                                                                .Where(s => s.Start.HasValue)
+                                                                .Where(s => s.End.HasValue)
+                                                                .GroupBy(s => new { s.Start.Value.Year, s.Start.Value.Month, s.Start.Value.Day })
+                                                                .Select(s => new { DateKey = s.Key, Sessions = s })
+                                                                .ToList();
+                        }
+                        
+                        @foreach (var dayGroup in sessionGroup.OrderBy(s => s.DateKey.Year).ThenBy(s => s.DateKey.Month).ThenBy(s => s.DateKey.Day))
+                        {
+                            var date = DateTime.Parse(dayGroup.DateKey.Month + "/" + dayGroup.DateKey.Day + "/" + dayGroup.DateKey.Year);
+                            var tabName = date.ToString("dddd, MMMM d", CultureInfo.CreateSpecificCulture("en-US")).Replace(" ", "").Replace(",", "");
+                            var dateString = date.ToString("dddd, MMMM d", CultureInfo.CreateSpecificCulture("en-US"));
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>
+                                        @dateString
+                                    </h4>
+                                </div>
+
+                                <!-- /span12 -->
+                                <table>
+                                    <tbody>
+                                        @{
+                            var sessionTimes = dayGroup.Sessions
+                                    .GroupBy(s => new { s.Start })
+                                    .Select(s => new { DateKey = s.Key, Sessions = s })
+                                    .OrderBy(s => s.DateKey.Start)
+                                    .ToList();
+                                        }
+                                        @foreach (var sessionTime in sessionTimes)
+                                        {
+                                            <tr>
+                                                <td colspan="2" style="background-color:cadetblue;" class="pull-left">
+                                                    <h4 style="color: white;padding-left:5px;padding-right:5px;">@sessionTime.DateKey.Start.Value.ToShortTimeString()</h4>
+                                                </td>
+                                            </tr>
+                                            foreach (var session in sessionTime.Sessions.OrderBy(s => s.Start.Value.TimeOfDay))
+                                            {
+
+                                                <tr>
+                                                    <td>
+                                                        <h5>@session.Title</h5>
+                                                        @*@session.Room*@
+                                                    </td>
+                                                    <td>
+                                                        @*@foreach (var speaker in session.speakers)
+                                                        {
+                                                            @Html.RouteLink(speaker.fullName, "SessionSpeakerDetail", new { conferenceSlug = Model.slug, speakerSlug = speaker.slug }, null)<br />
+                                                        }*@
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-md-3">
+                <div class="well well-sm">Social</div>
+            </div>
+        </div>
+        
+    </div>
+    <!-- END: CONTENT -->
+</section>

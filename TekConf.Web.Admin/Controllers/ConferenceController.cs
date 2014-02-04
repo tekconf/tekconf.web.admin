@@ -82,11 +82,23 @@ namespace TekConf.Web.Admin.Controllers
 	    public async Task<ActionResult> Created(int id)
 	    {
             var dto = await _context.Conferences.AsNoTracking()
-                        .Project().To<ConferenceDetailDto>()
+                        .Project().To<ConferenceCreatedDto>()
                         .SingleOrDefaultAsync(c => c.Id == id);
 
 	        var viewModel = new ConferenceCreatedViewModel() {Conference = dto};
 	        
+            return View(viewModel);
+	    }
+
+	    [HttpGet]
+	    public async Task<ActionResult> Detail(int id)
+	    {
+            var dto = await _context.Conferences.Include(c => c.Sessions).AsNoTracking()
+                        .Project().To<ConferenceDetailDto>()
+                        .SingleOrDefaultAsync(c => c.Id == id);
+
+            var viewModel = new ConferenceDetailViewModel { Conference = dto };
+
             return View(viewModel);
 	    }
 
@@ -111,7 +123,7 @@ namespace TekConf.Web.Admin.Controllers
                 return View(viewModel);
             }
 
-            var conference = await _context.Conferences.AsNoTracking().SingleOrDefaultAsync(c => c.Id == viewModel.Conference.Id);
+            var conference = await _context.Conferences.SingleOrDefaultAsync(c => c.Id == viewModel.Conference.Id);
 			conference.CallForSpeakersCloses = viewModel.Conference.CallForSpeakersCloses;
 			conference.CallForSpeakersOpens = viewModel.Conference.CallForSpeakersOpens;
 			conference.DefaultTalkLength = viewModel.Conference.DefaultTalkLength;

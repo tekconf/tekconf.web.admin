@@ -1,0 +1,76 @@
+﻿@using TekConf.Web.Admin.Code
+@model TekConf.Web.Admin.ViewModels.Session.SessionCreateViewModel
+
+<section class="content">
+
+    <ol class="breadcrumb">
+        <li><i class="fa fa-comments-o"></i> <a href="@Url.Action("Index")">Conferences</a></li>
+        <li class="active"> Create</li>
+    </ol>
+
+    <div class="header">
+        <div class="col-md-12">
+            <h3 class="header-title">Add a Session to @Model.ConferenceName</h3>
+            <p class="header-info">Overview and latest statistics</p>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="main-content">
+        @if (!Html.ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">@Html.ValidationSummary()</div>
+        }
+        @using (Html.BeginForm("Create", "Session", null, FormMethod.Post, new { role = "form", @class = "validateForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.ConferenceId)
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group @Html.ValidationClass(x => x.Session.Title)">
+                        @Html.LabelFor(m => m.Session.Title)
+                        @Html.TextBoxFor(m => m.Session.Title, new { @class = "form-control", placeholder = "Enter session title" })
+                    </div>
+                    <div class="form-group @Html.ValidationClass(x => x.Session.TalkLength)">
+                        @Html.LabelFor(m => m.Session.TalkLength, "Talk length")
+                        @Html.TextBoxFor(m => m.Session.TalkLength, new { @class = "form-control", data_mask = "99" })
+                        <span class="help-block">Enter the talk length, in minutes</span>
+                    </div>
+                    <div class="form-group @Html.ValidationClass(x => x.Session.WillProvideVideo)">
+                        @Html.CheckBoxFor(m => m.Session.WillProvideVideo, new { @class = "checker" }) Will the session be recorded?
+                    </div>
+                    <div class="form-group @Html.ValidationClass(x => x.Session.Description)">
+                        @Html.LabelFor(m => m.Session.Description)
+                        @Html.TextAreaFor(m => m.Session.Description, new { @class = "form-control", placeholder = "Enter session description", rows = 6 })
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group @Html.ValidationClass(x => x.Session.Start)">
+                        @Html.LabelFor(m => m.Session.Start, "Session start date/time")
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.Session.Start, new { @class = "form-control datepicker", placeholder = "Enter start date", data_date_format = "mm/dd/yyyy" })
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group @Html.ValidationClass(x => x.Session.End)">
+                        @Html.LabelFor(m => m.Session.End, "Session end date/time")
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.Session.End, new { @class = "form-control datepicker", placeholder = "Enter end date", data_date_format = "mm/dd/yyyy" })
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <input type="submit" value="Save Session" class="btn btn-primary" />
+                </div>
+            </div>
+        }
+    </div>
+</section>

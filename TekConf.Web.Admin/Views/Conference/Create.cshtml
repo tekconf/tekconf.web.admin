@@ -23,6 +23,7 @@
         }
         @using (Html.BeginForm("Create", "Conference", null, FormMethod.Post, new { role = "form", enctype = "multipart/form-data", @class = "validateForm" }))
         {
+            @Html.AntiForgeryToken()
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group @Html.ValidationClass(x => x.Conference.Name)">
@@ -129,3 +130,4 @@
     </div>
     <!-- END: CONTENT -->
 </section>
+<!-- TODO : Add code of conduct -->

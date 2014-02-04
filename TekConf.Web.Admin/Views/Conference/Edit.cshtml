@@ -16,7 +16,7 @@
                     <p class="header-info">Overview and latest statistics</p>
                 </div>
                 <div class="col-md-2">
-                    <div class="pull-right"><button class="btn btn-success"><i class="fa fa-plus-circle"></i> Add Session</button> <button class="btn btn-danger"><i class="fa fa-trash-o"></i></button></div>
+                    <div class="pull-right"><a class="btn btn-success" href="@Url.Action("Create", "Session", new { conferenceId = Model.Conference.Id } )"><i class="fa fa-plus-circle"></i> Add Session</a> <button class="btn btn-danger"><i class="fa fa-trash-o"></i></button></div>
                 </div>
             </div>
         </div>
@@ -32,6 +32,7 @@
         }
         @using (Html.BeginForm("Edit", "Conference", null, FormMethod.Post, new { role = "form", enctype = "multipart/form-data", @class = "validateForm", id = Model.FormName }))
         {
+            @Html.AntiForgeryToken()
             @Html.HiddenFor(m => m.Conference.Id)
             <div class="row">
                 <div class="col-md-6">

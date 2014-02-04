@@ -267,6 +267,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ConferenceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -275,12 +276,18 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Conference\Create\ConferenceCreatedDto.cs" />
     <Compile Include="ViewModels\Conference\Create\ConferenceCreatedViewModel.cs" />
     <Compile Include="ViewModels\Conference\Create\ConferenceCreateViewModel.cs" />
-    <Compile Include="ViewModels\Conference\Create\ConferenceEditViewModel.cs" />
-    <Compile Include="ViewModels\Conference\Create\ConferenceIndexViewModel.cs" />
+    <Compile Include="ViewModels\Conference\Detail\ConferenceDetailDto.cs" />
+    <Compile Include="ViewModels\Conference\Detail\ConferenceDetailSessionDto.cs" />
+    <Compile Include="ViewModels\Conference\Detail\ConferenceDetailViewModel.cs" />
+    <Compile Include="ViewModels\Conference\Edit\ConferenceEditViewModel.cs" />
+    <Compile Include="ViewModels\Conference\Index\ConferenceIndexViewModel.cs" />
     <Compile Include="ViewModels\Conference\Create\CreateConferenceDto.cs" />
-    <Compile Include="ViewModels\Conference\Create\EditConferenceDto.cs" />
+    <Compile Include="ViewModels\Conference\Edit\EditConferenceDto.cs" />
+    <Compile Include="ViewModels\Session\Create\CreateSessionDto.cs" />
+    <Compile Include="ViewModels\Session\Create\SessionCreateViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.Net4.dll">
@@ -1287,9 +1294,13 @@
     <Content Include="Views\Conference\Edit.cshtml" />
     <Content Include="Views\Shared\_DirtyData.cshtml" />
     <Content Include="Views\Conference\Created.cshtml" />
+    <Content Include="Views\Session\Create.cshtml" />
+    <Content Include="Views\Conference\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewModels\Session\Edit\" />
+    <Folder Include="ViewModels\Session\Index\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1300,6 +1311,9 @@
       <Project>{8eb54a3e-2ed3-458c-b3c8-bd32fa06dc03}</Project>
       <Name>TekConf.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
