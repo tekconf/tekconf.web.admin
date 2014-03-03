@@ -20,6 +20,7 @@ namespace TekConf.Web.Admin.ViewModels.Conference
         public int Id { get; set; }
         public string Name { get; set; }
         public string ImageUrl { get; set; }
+				public string SquareImageUrl { get; set; }
         public string Slug { get; set; }
         public DateTime? Start { get; set; }
         public DateTime? End { get; set; }

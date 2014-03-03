@@ -14,6 +14,7 @@ namespace TekConf.Web.Admin.ViewModels
         [Required]
         public string Description { get; set; }
         public string ImageUrl { get; set; }
+				public string SquareImageUrl { get; set; }
         public string Tagline { get; set; }
         
         [Display(Name = "Is Live?")]

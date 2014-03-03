@@ -16,6 +16,7 @@ namespace TekConf.Data.Models
 		public string Name { get; set; }
 		public string Description { get; set; }
 		public string ImageUrl { get; set; }
+		public string SquareImageUrl { get; set; }
 		public string Tagline { get; set; }
 		public bool IsLive { get; set; }
 		public bool IsOnline { get; set; }

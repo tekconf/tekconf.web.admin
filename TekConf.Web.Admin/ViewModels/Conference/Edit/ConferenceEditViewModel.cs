@@ -12,5 +12,6 @@ namespace TekConf.Web.Admin.ViewModels.Conference
 
         public EditConferenceDto Conference { get; set; }
         public HttpPostedFileBase ImageFile { get; set; }
+				public HttpPostedFileBase SquareImageFile { get; set; }
     }
 }

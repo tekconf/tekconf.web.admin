@@ -30,31 +30,31 @@ namespace TekConf.Web.Admin.Controllers
 		public async Task<ActionResult> Index()
 		{
 			var dtos = await _context.Conferences
-                                .AsNoTracking()
-                                .Project().To<ConferenceDto>()
-                                .ToListAsync();
+																.AsNoTracking()
+																.Project().To<ConferenceDto>()
+																.ToListAsync();
 
-		    var viewModel = new ConferenceIndexViewModel
-		    {
-		        Conferences = dtos
-		    };
+			var viewModel = new ConferenceIndexViewModel
+			{
+				Conferences = dtos
+			};
 			return View(viewModel);
 		}
 
 		[HttpGet]
 		public ActionResult Create()
 		{
-            var viewModel = new ConferenceCreateViewModel();
+			var viewModel = new ConferenceCreateViewModel();
 			return View(viewModel);
 		}
 
-        [HttpPost]
+		[HttpPost]
 		public async Task<ActionResult> Create(ConferenceCreateViewModel viewModel)
 		{
-		    if (!ModelState.IsValid)
-		    {
-                return View(viewModel);
-		    }
+			if (!ModelState.IsValid)
+			{
+				return View(viewModel);
+			}
 
 			var conference = Mapper.Map<Conference>(viewModel.Conference);
 			if (conference != null)
@@ -62,68 +62,71 @@ namespace TekConf.Web.Admin.Controllers
 				var user = _userManager.FindById(User.Identity.GetUserId());
 				conference.AddAdminUser(user);
 
-				var url = SaveUploadedImage(viewModel.ImageFile, conference);
+				var url = SaveImage(viewModel.ImageFile, conference);
 				conference.ImageUrl = url;
+
+				var squareImageUrl = SaveSquareImage(viewModel.ImageFile, conference);
+				conference.SquareImageUrl = squareImageUrl;
 
 				_context.Conferences.Add(conference);
 				await _context.SaveChangesAsync();
 			}
-            if (conference != null)
-            {
-			    return RedirectToAction("Created", new { id = conference.Id });
-            }
-            else
-            {
-			    return RedirectToAction("Index");
-            }
+			if (conference != null)
+			{
+				return RedirectToAction("Created", new { id = conference.Id });
+			}
+			else
+			{
+				return RedirectToAction("Index");
+			}
 		}
 
-	    [HttpGet]
-	    public async Task<ActionResult> Created(int id)
-	    {
-            var dto = await _context.Conferences.AsNoTracking()
-                        .Project().To<ConferenceCreatedDto>()
-                        .SingleOrDefaultAsync(c => c.Id == id);
+		[HttpGet]
+		public async Task<ActionResult> Created(int id)
+		{
+			var dto = await _context.Conferences.AsNoTracking()
+									.Project().To<ConferenceCreatedDto>()
+									.SingleOrDefaultAsync(c => c.Id == id);
 
-	        var viewModel = new ConferenceCreatedViewModel() {Conference = dto};
-	        
-            return View(viewModel);
-	    }
+			var viewModel = new ConferenceCreatedViewModel() { Conference = dto };
 
-	    [HttpGet]
-	    public async Task<ActionResult> Detail(int id)
-	    {
-            var dto = await _context.Conferences.Include(c => c.Sessions).AsNoTracking()
-                        .Project().To<ConferenceDetailDto>()
-                        .SingleOrDefaultAsync(c => c.Id == id);
+			return View(viewModel);
+		}
 
-            var viewModel = new ConferenceDetailViewModel { Conference = dto };
+		[HttpGet]
+		public async Task<ActionResult> Detail(int id)
+		{
+			var dto = await _context.Conferences.Include(c => c.Sessions).AsNoTracking()
+									.Project().To<ConferenceDetailDto>()
+									.SingleOrDefaultAsync(c => c.Id == id);
 
-            return View(viewModel);
-	    }
+			var viewModel = new ConferenceDetailViewModel { Conference = dto };
+
+			return View(viewModel);
+		}
 
 		[HttpGet]
 		public async Task<ActionResult> Edit(int id)
 		{
-            var dto = await _context.Conferences.AsNoTracking()
-                                    .Project().To<EditConferenceDto>()
-                                    .SingleOrDefaultAsync(c => c.Id == id);
+			var dto = await _context.Conferences.AsNoTracking()
+															.Project().To<EditConferenceDto>()
+															.SingleOrDefaultAsync(c => c.Id == id);
 
-            var viewModel = new ConferenceEditViewModel(HttpContext.Request.RequestContext.RouteData) { Conference = dto };
+			var viewModel = new ConferenceEditViewModel(HttpContext.Request.RequestContext.RouteData) { Conference = dto };
 			return View(viewModel);
 
 		}
 
-        [HttpPost, LockForm]
+		[HttpPost, LockForm]
 		public async Task<ActionResult> Edit(ConferenceEditViewModel viewModel)
 		{
-            viewModel.SetRouteData(HttpContext.Request.RequestContext.RouteData);
-            if (!ModelState.IsValid)
-            {
-                return View(viewModel);
-            }
+			viewModel.SetRouteData(HttpContext.Request.RequestContext.RouteData);
+			if (!ModelState.IsValid)
+			{
+				return View(viewModel);
+			}
 
-            var conference = await _context.Conferences.SingleOrDefaultAsync(c => c.Id == viewModel.Conference.Id);
+			var conference = await _context.Conferences.SingleOrDefaultAsync(c => c.Id == viewModel.Conference.Id);
 			conference.CallForSpeakersCloses = viewModel.Conference.CallForSpeakersCloses;
 			conference.CallForSpeakersOpens = viewModel.Conference.CallForSpeakersOpens;
 			conference.DefaultTalkLength = viewModel.Conference.DefaultTalkLength;
@@ -141,39 +144,56 @@ namespace TekConf.Web.Admin.Controllers
 			conference.Tagline = viewModel.Conference.Tagline;
 			conference.WillProvideVideos = viewModel.Conference.WillProvideVideos;
 
-		    if (viewModel.ImageFile != null)
-		    {
-                var url = SaveUploadedImage(viewModel.ImageFile, conference);
-		        if (!string.IsNullOrWhiteSpace(url))
-		        {
-                    conference.ImageUrl = url;
-                }
-            }
+			if (viewModel.ImageFile != null)
+			{
+				var url = SaveImage(viewModel.ImageFile, conference);
+				if (!string.IsNullOrWhiteSpace(url))
+				{
+					conference.ImageUrl = url;
+				}
+
+				var squareImageUrl = SaveSquareImage(viewModel.ImageFile, conference);
+				if (!string.IsNullOrWhiteSpace(squareImageUrl))
+				{
+					conference.SquareImageUrl = squareImageUrl;
+				}
+			}
 
 			await _context.SaveChangesAsync();
 			return RedirectToAction("Index");
 		}
 
-        private string SaveUploadedImage(HttpPostedFileBase imageFile, Conference conference)
-        {
-            string url = null;
-            if (imageFile != null)
-            {
-                IImageSaver imageSaver = null;
+		private string SaveImage(HttpPostedFileBase imageFile, Conference conference)
+		{
+			var imageName = conference.Name.GenerateSlug() + Path.GetExtension(imageFile.FileName);
+			return SaveUploadedImage(imageName, imageFile, conference);
+		}
+
+		private string SaveSquareImage(HttpPostedFileBase imageFile, Conference conference)
+		{
+			var imageName = conference.Name.GenerateSlug() + "-sq" + Path.GetExtension(imageFile.FileName);
+			return SaveUploadedImage(imageName, imageFile, conference);
+		}
+
+		private string SaveUploadedImage(string imageName, HttpPostedFileBase imageFile, Conference conference)
+		{
+			string url = null;
+			if (imageFile != null)
+			{
+				IImageSaver imageSaver = null;
 
 #if DEBUG
-                //TODO, Move this to configuration
-                imageSaver = new FileSystemImageSaver();
+				//TODO, Move this to configuration
+				imageSaver = new FileSystemImageSaver();
 #else
 				IImageSaverConfiguration configuration = new ImageSaverConfiguration();
 				imageSaver = new AzureImageSaver(configuration);
 #endif
+				url = imageSaver.SaveImage(imageName, imageFile);
+			}
 
-                url = imageSaver.SaveImage(conference.Name.GenerateSlug() + Path.GetExtension(imageFile.FileName), imageFile);
-            }
-
-            return url;
-        }
+			return url;
+		}
 	}
 
 
