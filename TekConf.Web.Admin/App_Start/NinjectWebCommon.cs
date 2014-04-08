@@ -2,8 +2,8 @@ using Common.Logging;
 using TekConf.Data;
 using TekConf.Data.Models;
 
-[assembly: WebActivator.PreApplicationStartMethod(typeof(TekConf.Web.Admin.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(TekConf.Web.Admin.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(TekConf.Web.Admin.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(TekConf.Web.Admin.App_Start.NinjectWebCommon), "Stop")]
 
 namespace TekConf.Web.Admin.App_Start
 {
