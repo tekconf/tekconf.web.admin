@@ -48,9 +48,9 @@ namespace TekConf.Web.Controllers
 		}
 
 		//[CompressFilter]
-		public async Task<ActionResult> Detail(string conferenceSlug)
+		public async Task<ActionResult> Detail(string slug)
 		{
-			if (string.IsNullOrWhiteSpace(conferenceSlug))
+			if (string.IsNullOrWhiteSpace(slug))
 				return RedirectToAction("Index");
 
 			string userName = string.Empty;
@@ -61,7 +61,7 @@ namespace TekConf.Web.Controllers
 
 			var conference = this.Context
 														.Conferences
-														.Where(x => x.Slug == conferenceSlug)
+														.Where(x => x.Slug == slug)
 														.Project().To<ConferenceDetailDto>()
 														.FutureFirstOrDefault();
 

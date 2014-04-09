@@ -1,7 +1,6 @@
-﻿@using System.Collections.Generic
-@using System.Linq
+﻿@using System.Linq
 @using TekConf.Web.ViewModels
-@model TekConf.Web.ViewModels.ConferencesIndexViewModel
+@model ConferencesIndexViewModel
 
 <div class="breadcrumbs margin-bottom-50">
 	<div class="container">
@@ -79,7 +78,7 @@
 				}
 			</div>
 
-		</div><!--/span3-->
+		</div>
 
 		<div class="span9">
 			<div class="row-fluid gallery">
@@ -92,7 +91,7 @@
 							@foreach (var conference in Model.Conferences.Skip(groupCounter * 4).Take(4))
 							{
 								<li class="span3">
-									<a class="thumbnail fancybox-button zoomer" data-rel="fancybox-button" href="~/Conferences/@conference.Slug">
+									<a class="thumbnail fancybox-button zoomer" data-rel="fancybox-button" href="@Url.Action("Detail", "Conferences", new { slug = conference.Slug })">
 										<div class="overlay-zoom">
 											<img src="@conference.ImageUrl" alt="" />
 											<div class="zoom-icon"></div>
@@ -105,25 +104,18 @@
 									</a>
 								</li>
 							}
-						</ul><!--/thumbnails-->
+						</ul>
 					}
 				}
+			</div>
+		</div>
+	</div>
+</div>
 
-			</div><!--/row-fluid-->
-
-
-
-
-		</div><!--/span9-->
-
-
-	</div><!--/row-fluid-->
-
-
-</div><!--/container-->
 @section scripts {
 	changeMenuActive('menuConferences');
 }
+
 @section scriptLinks {
 	<script>
 
@@ -133,4 +125,3 @@
 		});
 	</script>
 }
-<!--=== End Content Part ===-->

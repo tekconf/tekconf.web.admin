@@ -20,21 +20,19 @@
 				<div class="thumbnail-style thumbnail-kenburn">
 					<div class="thumbnail-img">
 						<div class="overflow-hidden">
-							<a href="~/Conferences/@featuredConference.Slug"><img src="@featuredConference.ImageUrl" alt="@featuredConference.Name" /></a>
+							<a href="@Url.Action("Detail", "Conferences", new { slug = featuredConference.Slug } )"><img src="@featuredConference.ImageUrl" alt="@featuredConference.Name" /></a>
 						</div>
-						<a class="btn btn-more hover-effect" href="~/Conferences/@featuredConference.Slug">read more +</a>
+						<a class="btn btn-more hover-effect" href="@Url.Action("Detail", "Conferences", new { slug = featuredConference.Slug } )">read more +</a>
 					</div>
 					<h3>@Html.ActionLink(featuredConference.Name, "Detail", "Conferences", new { conferenceSlug = featuredConference.Slug }, new { @class = "hover-effect" })</h3>
 					<p>
-						<a href="~/Conferences/@featuredConference.Slug" class="hover-effect">
+						<a href="@Url.Action("Detail", "Conferences", new { slug = featuredConference.Slug } )" class="hover-effect">
 							@featuredConference.Start.Value.ToString("MMMM dd, yyyy")<br>@featuredConference.Description
 						</a>
 					</p>
 				</div>
 			</li>
 		}
-
-
 
 	</ul>
 </div>

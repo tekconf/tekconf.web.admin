@@ -9,7 +9,6 @@
 <head>
 	<title>TekConf</title>
 
-	<!-- Meta -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -17,26 +16,22 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<!-- CSS Global Compulsory-->
-	<link rel="stylesheet" href="~/assets/plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="~/Content/bootstrap.min.css">
 	<link href="~/Content/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
 	<link rel="stylesheet" href="~/css/jquery-ui-timepicker-addon.css">
 
 	<link rel="stylesheet" href="~/assets/css/headers/header1.css">
-	<link rel="stylesheet" href="~/assets/plugins/bootstrap/css/bootstrap-responsive.min.css">
+
 	<link rel="stylesheet" href="~/assets/css/style_responsive.css">
 	<link rel="stylesheet" href="~/assets/css/effects.css">
 	<link rel="stylesheet" href="~/assets/css/img-hover-effect.css">
 	<link rel="shortcut icon" href="~/favicon.ico">
-	<!-- CSS Implementing Plugins -->
 	<link rel="stylesheet" href="~/assets/plugins/font-awesome/css/font-awesome.css">
 	<link rel="stylesheet" href="~/assets/plugins/flexslider/flexslider.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="~/assets/plugins/parallax-slider/css/parallax-slider.css" type="text/css">
 	<link rel="stylesheet" href="~/assets/plugins/bxslider/jquery.bxslider.css">
-	<!-- CSS Theme -->
 	<link rel="stylesheet" href="~/assets/css/themes/default.css" id="style_color">
 	<link rel="stylesheet" href="~/assets/css/style.css">
-	@*<link rel="stylesheet" href="~/assets/css/themes/headers/default.css" id="style_color-header-1">*@
 	<link rel="search" type="application/opensearchdescription+xml" href="http://www.tekconf.com/TekConf.xml" title="TekConf Search" />
 
 	@RenderSection("head", required: false)
@@ -57,25 +52,20 @@
 				}
 				else
 				{
-					<li><a href="~/Account/Login" class="login-btn">Login</a></li>
+					<li><a href="@Url.Action("Login", "Account")" class="login-btn">Login</a></li>
 				}
 			</ul>
 
 		</div>
 	</div>
-	<!--/top-->
-	<!--=== End Top ===-->
-	<!--=== Header ===-->
+
 	<div class="header">
 		<div class="container">
-			<!-- Logo -->
 			<div class="logo">
-				<a href="/">
+				<a href="@Url.Action("Index", "Home")">
 					<img id="logo-header" src="~/assets/img/logo1-default.png" alt="Logo">
 				</a>
 			</div>
-			<!-- /logo -->
-			<!-- Menu -->
 			<div class="navbar">
 				<div class="navbar-inner">
 					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -83,35 +73,30 @@
 						<span class="fa fa-bars"></span>
 						<span class="fa fa-bars"></span>
 					</a>
-					<!-- /nav-collapse -->
 					<div class="nav-collapse collapse">
 						<ul class="nav top-2">
 							<li id="menuHome" class="active">
-								<a href="~/">Home</a>
+								<a href="@Url.Action("Index", "Home")">Home</a>
 							</li>
 							<li id="menuConferences">
-								<a href="~/Conferences">Conferences</a>
+								<a href="@Url.Action("Index", "Conferences")">Conferences</a>
 							</li>
 							@if (Request.IsAuthenticated)
 							{
-								<li id="menuSchedule"><a href="~/Schedule">My Schedule </a></li>
+								<li id="menuSchedule"><a href="@Url.Action("Index", "Schedule")">My Schedule </a></li>
 							}
 							<li id="menuApi">
 								<a href="@Url.Action("Index", "Docs")">Api</a>
 							</li>
 							<li id="menuApps">
-								<a href="~/Apps">Apps</a>
+								<a href="@Url.Action("Index", "Apps")">Apps</a>
 							</li>
 							<li id="menuSpeakers">
-								<a href="~/Speakers">For Speakers</a>
+								<a href="@Url.Action("Index", "Speakers")">For Speakers</a>
 							</li>
 							<li id="menuOrganizers">
-								<a href="~/Organizers">For Organizers</a>
+								<a href="@Url.Action("Index", "Organizers")">For Organizers</a>
 							</li>
-							@if (Html.IsAdmin())
-							{
-								<li id="menuAdmin"><a href="~/Admin">Admin </a></li>
-							}
 							<li><a class="search"><i class="fa fa-search search-btn"></i></a></li>
 						</ul>
 						<div class="search-open">
@@ -124,28 +109,21 @@
 							</div>
 						</div>
 					</div>
-					<!-- /nav-collapse -->
 				</div>
-				<!-- /navbar-inner -->
 			</div>
-			<!-- /navbar -->
 		</div>
-		<!-- /container -->
 	</div>
-	<!--/header -->
-	<!--=== End Header ===-->
+
 	@RenderBody()
-	<!--=== Footer ===-->
+
 	<div class="footer">
 		<div class="container">
 			<div class="row-fluid">
 				<div class="span4">
-					<!-- About -->
 					<div class="headline">
 						<h3>About</h3>
 					</div>
 					<p class="margin-bottom-25">There are real people behind tekconf, so if you have a question or suggestion (no matter how small) please get in touch with us: contact <a href="mailto:robgibbens@arteksoftware.com">robgibbens@arteksoftware.com</a></p>
-					<!-- Monthly Newsletter -->
 					<div class="headline">
 						<h3>Email Newsletter</h3>
 					</div>
@@ -157,7 +135,6 @@
 						</div>
 					</form>
 				</div>
-				<!--/span4-->
 
 				<div class="span4">
 					<div class="posts">
@@ -165,27 +142,25 @@
 							<h3>Newest Conferences</h3>
 						</div>
 						@*@if (ViewBag.NewestConferences != null)
-						{
-							foreach (var newConference in ViewBag.NewestConferences as IEnumerable<FullConferenceDto>)
 							{
-								<dl class="dl-horizontal">
-									<dt>
-										<a href="~/Conferences/@newConference.slug">
-											<img src="@newConference.imageUrl" alt="@newConference.name" />
-										</a>
-									</dt>
-									<dd>
-										<p><a href="~/Conferences/@newConference.slug">@newConference.name</a></p>
-									</dd>
-								</dl>
-							}
-						}*@
-						<a href="~/Conferences?sortBy=dateAdded">See all new conferences</a>
+								foreach (var newConference in ViewBag.NewestConferences as IEnumerable<FullConferenceDto>)
+								{
+									<dl class="dl-horizontal">
+										<dt>
+											<a href="~/Conferences/@newConference.slug">
+												<img src="@newConference.imageUrl" alt="@newConference.name" />
+											</a>
+										</dt>
+										<dd>
+											<p><a href="~/Conferences/@newConference.slug">@newConference.name</a></p>
+										</dd>
+									</dl>
+								}
+							}*@
+						<a href="@Url.Action("Index", "Conferences", new { sortBy = "dateAdded" })">See all new conferences</a>
 					</div>
 				</div>
-				<!--/span4-->
 				<div class="span4">
-					<!-- Stay Connected -->
 					<div class="headline">
 						<h3>Stay Connected</h3>
 					</div>
@@ -193,15 +168,10 @@
 						<li><a href="http://twitter.com/tekconf" target="_new" data-original-title="Twitter" class="social_twitter"></a></li>
 					</ul>
 				</div>
-				<!--/span4-->
 			</div>
-			<!--/row-fluid-->
 		</div>
-		<!--/container-->
 	</div>
-	<!--/footer-->
-	<!--=== End Footer ===-->
-	<!--=== Copyright ===-->
+
 	<div class="copyright">
 		<div class="container">
 			<div class="row-fluid">
@@ -209,19 +179,14 @@
 					<p>2013 &copy; TekConf. All Rights Reserved. </p>
 				</div>
 				<div class="span4">
-					<a href="index.html">
-						<img id="logo-footer" src="~/assets/img/logo2-default.png" class="pull-right" alt="" />
+					<a href="@Url.Action("Index", "Home")">
+					<img id="logo-footer" src="~/assets/img/logo2-default.png" class="pull-right" alt="" />
 					</a>
 				</div>
 			</div>
-			<!--/row-fluid-->
 		</div>
-		<!--/container-->
 	</div>
-	<!--/copyright-->
-	<!--=== End Copyright ===-->
-	<!-- JS Global Compulsory -->
-	
+
 
 	<script type="text/javascript" src="~/Scripts/jquery-2.1.0.min.js"></script>
 	<script type="text/javascript" src="~/Scripts/jquery-migrate-1.2.1.min.js"></script>
@@ -239,25 +204,25 @@
 	<script type="text/javascript" src="~/assets/js/pages/index.js"></script>
 	<script type="text/javascript" src="~/assets/plugins/bxslider/jquery.bxslider.js"></script>
 	<script type="text/javascript">
-            $(function () {
-                App.init();
-                App.initSliders();
-                Index.initParallaxSlider();
-                App.initBxSlider1();
-            });
+		$(function () {
+			App.init();
+			App.initSliders();
+			Index.initParallaxSlider();
+			App.initBxSlider1();
+		});
 
-            function changeMenuActive(id) {
-                $('#menuHome').removeClass('active');
-                $('#menuConferences').removeClass('active');
-                $('#menuApi').removeClass('active');
-                $('#menuApps').removeClass('active');
-                $('#menuSpeakers').removeClass('active');
-                $('#menuOrganizers').removeClass('active');
+		function changeMenuActive(id) {
+			$('#menuHome').removeClass('active');
+			$('#menuConferences').removeClass('active');
+			$('#menuApi').removeClass('active');
+			$('#menuApps').removeClass('active');
+			$('#menuSpeakers').removeClass('active');
+			$('#menuOrganizers').removeClass('active');
 
-                $('#' + id).addClass('active');
-            }
+			$('#' + id).addClass('active');
+		}
 
-            @RenderSection("scripts", required: false)
+		@RenderSection("scripts", required: false)
 
 	</script>
 	@RenderSection("scriptLinks", required: false)
@@ -265,9 +230,9 @@
 	@if (!HttpContext.Current.Request.IsLocal)
 	{
 		<script>
-                var _gaq = _gaq || [];
-                _gaq.push(['_setAccount', 'UA-20184526-4']);
-                _gaq.push(['_trackPageview']);
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-20184526-4']);
+			_gaq.push(['_trackPageview']);
 		</script>
 		<script src="/ga.ashx" async="async" defer="defer"></script>
 
@@ -277,4 +242,5 @@
 			<script src="~/assets/js/respond.js"></script>
 	<![endif]-->
 </body>
+
 </html>

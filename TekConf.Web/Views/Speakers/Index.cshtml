@@ -55,7 +55,7 @@
 					<div id="collapseOpen-@conference.Slug" class="accordion-body in collapse" style="height: auto;">
 						<div class="accordion-inner">
 							<p>@conference.Description</p>
-							<p><a href="~/Conferences/@conference.Slug"><button class="btn btn-u">View Conference</button></a></p>
+							<p><a href="@Url.Action("Detail", "Conferences", new { slug = conference.Slug } )"><button class="btn btn-u">View Conference</button></a></p>
 						</div>
 					</div>
 				</div>
@@ -86,7 +86,7 @@
 										@conference.FormattedAddress
 									</p>
 									<p>@conference.Description</p>
-									<p><a href="~/Conferences/@conference.Slug"><button class="btn btn-u">View Conference</button></a></p>
+									<p><a href="@Url.Action("Detail", "Conferences", new { slug = conference.Slug } )"><button class="btn btn-u">View Conference</button></a></p>
 								</div>
 							</div>
 						</div>

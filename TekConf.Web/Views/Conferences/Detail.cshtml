@@ -139,11 +139,6 @@
 				}
 
 			</ul>
-			@*@if (Html.IsAdmin())
-			{
-				@Html.RouteLink("Edit Conference", "AdminEditConference", new { conferenceSlug = Model.Conference.Slug }, new { @class = "btn-u btn-info", style = "padding-right:5px;margin-right:5px;margin-bottom:5px;" })
-				@Html.RouteLink("Add Session", "AdminAddSession", new { conferenceSlug = Model.Conference.Slug }, new { @class = "btn-u", style = "margin-bottom:5px;" })
-			}*@
 
 
 			@if (Request.IsAuthenticated)
