@@ -1,0 +1,88 @@
+﻿@using System
+@{
+	var sessionGroup = Model.Conference.Sessions
+																									.GroupBy(s => new { s.start.Year, s.start.Month, s.start.Day })
+																									.Select(s => new { DateKey = s.Key, Sessions = s })
+																									.ToList();
+}
+@if (Request.IsAuthenticated)
+{
+
+	<div class="well"><a href="#" id="showHideMySessions">Show/Hide unscheduled sessions</a></div>
+}
+
+@foreach (var subjectList in Model.Conference.Subjects)
+{
+	foreach (var subject in subjectList.Split(',').OrderBy(x => x))
+	{
+		<button type="button" class="btn btn-u btn-u-blue" style="margin:5px;">@subject</button>
+	}
+}
+@foreach (var dayGroup in sessionGroup.OrderBy(s => s.DateKey.Year).ThenBy(s => s.DateKey.Month).ThenBy(s => s.DateKey.Day))
+{
+	var date = DateTime.Parse(dayGroup.DateKey.Month + "/" + dayGroup.DateKey.Day + "/" + dayGroup.DateKey.Year);
+	var tabName = date.ToString("dddd, MMMM d", CultureInfo.CreateSpecificCulture("en-US")).Replace(" ", "").Replace(",", "");
+	var dateString = date.ToString("dddd, MMMM d", CultureInfo.CreateSpecificCulture("en-US"));
+
+	<div class="row">
+		<div class="span12">
+			<h3>
+				@dateString
+			</h3>
+		</div>
+
+		<!-- /span12 -->
+		<table class="table table-striped">
+			<tbody>
+				@{
+	var sessionTimes = dayGroup.Sessions
+			.GroupBy(s => new { s.start })
+			.Select(s => new { DateKey = s.Key, Sessions = s })
+			.OrderBy(s => s.DateKey.start)
+			.ToList();
+				}
+				@foreach (var sessionTime in sessionTimes)
+				{
+					<tr>
+						<td colspan="3" style="background-color:cadetblue;">
+							<h4 style="color: white;">@sessionTime.DateKey.start.ToShortTimeString()</h4>
+						</td>
+					</tr>
+					foreach (var session in sessionTime.Sessions.OrderBy(s => s.start.TimeOfDay))
+					{
+
+						<tr>
+							@if (Request.IsAuthenticated)
+							{
+								if (session.isAddedToSchedule.HasValue && session.isAddedToSchedule.Value)
+								{
+									<td class="scheduled" style="width: 20px;">
+										<i class="fa fa-star fa-2x" id="remove-@session.slug" onclick="javascript:toggleSessionOnSchedule('@Model.Conference.slug', '@session.slug', '#remove-@session.slug')"></i>
+									</td>
+								}
+								else
+								{
+									<td class="unscheduled" style="width: 20px;">
+										<i class="fa fa-star-o fa-2x" id="add-@session.slug" onclick="javascript:toggleSessionOnSchedule('@Model.Conference.slug', '@session.slug', '#add-@session.slug')"></i>
+									</td>
+								}
+							}
+
+							<td>
+								<h5>@Html.RouteLink(session.title, "SessionDetail", new { conferenceSlug = Model.Conference.slug, sessionSlug = session.slug }, null)</h5>
+								@session.room
+							</td>
+							<td>
+								@foreach (var speaker in session.speakers)
+								{
+									@Html.RouteLink(speaker.fullName, "SessionSpeakerDetail", new { conferenceSlug = Model.Conference.slug, speakerSlug = speaker.slug }, null)<br />
+								}
+							</td>
+						</tr>
+					}
+				}
+			</tbody>
+		</table>
+	</div>
+
+}

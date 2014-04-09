@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web
+<!DOCTYPE html>
 <!--[if IE 7]> <html lang="en" class="ie7"> <![endif]-->
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -96,7 +97,7 @@
 								<li id="menuSchedule"><a href="~/Schedule">My Schedule </a></li>
 							}
 							<li id="menuApi">
-								<a href="~/Api">Api</a>
+								<a href="@Url.Action("Index", "Docs")">Api</a>
 							</li>
 							<li id="menuApps">
 								<a href="~/Apps">Apps</a>

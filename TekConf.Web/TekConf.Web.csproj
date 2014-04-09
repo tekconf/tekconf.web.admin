@@ -261,8 +261,13 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Code\AutoMapperBootstrapper.cs" />
     <Compile Include="Code\HtmlHelpers.cs" />
+    <Compile Include="Controllers\AppsController.cs" />
+    <Compile Include="Controllers\ConferencesController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
+    <Compile Include="Controllers\DocsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrganizersController.cs" />
+    <Compile Include="Controllers\SpeakersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="ga.ashx.cs">
       <DependentUpon>ga.ashx</DependentUpon>
@@ -273,7 +278,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Temp\TempClasses.cs" />
+    <Compile Include="ViewModels\ConferenceDetailViewModel.cs" />
+    <Compile Include="ViewModels\ConferencesFilter.cs" />
+    <Compile Include="ViewModels\Dtos\ConferenceDetailDto.cs" />
+    <Compile Include="ViewModels\Dtos\ConferencesIndexConferenceDto.cs" />
+    <Compile Include="ViewModels\ConferencesIndexViewModel.cs" />
+    <Compile Include="ViewModels\Dtos\HomePageConferenceDto.cs" />
+    <Compile Include="ViewModels\Dtos\SpeakersConferenceDto.cs" />
+    <Compile Include="ViewModels\Dtos\HistoryDto.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
+    <Compile Include="ViewModels\Dtos\LocationDto.cs" />
+    <Compile Include="ViewModels\Dtos\RoomDto.cs" />
+    <Compile Include="ViewModels\Dtos\PresentationDto.cs" />
+    <Compile Include="ViewModels\SpeakersViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.Net4.dll">
@@ -1054,6 +1071,7 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="App_Code\HtmlHelpers.cshtml" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1086,6 +1104,13 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-2.1.0.min.map" />
+    <Content Include="Views\Conferences\Index.cshtml" />
+    <Content Include="Views\Conferences\Detail.cshtml" />
+    <Content Include="Views\Conferences\_ConferenceSessionsTable.cshtml" />
+    <Content Include="Views\Docs\Index.cshtml" />
+    <Content Include="Views\Apps\Index.cshtml" />
+    <Content Include="Views\Speakers\Index.cshtml" />
+    <Content Include="Views\Organizers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TekConf.Data\TekConf.Data.csproj">

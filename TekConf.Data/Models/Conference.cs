@@ -30,6 +30,7 @@ namespace TekConf.Data.Models
 		public DateTime? RegistrationOpens { get; set; }
 		public DateTime? RegistrationCloses { get; set; }
 		public DateTime? CreatedDate { get; set; }
+		public DateTime? LastUpdatedDate { get; set; }
 
 		// One-to-One
 		public virtual Location Location { get; set; }
